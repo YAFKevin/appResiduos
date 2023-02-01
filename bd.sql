@@ -50,7 +50,7 @@ CREATE TABLE RESIDUO(
 ---- CRUD RESIDUO ----------------------------------
 
 CREATE
-OR REPLACE FUNCTION insertarResiduo(nombre varchar(20)) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION insertarResiduo(nombre varchar(20)) RETURNS void AS $$ BEGIN
 INSERT INTO
     RESIDUO(nombre)
 VALUES
@@ -58,11 +58,11 @@ VALUES
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 CREATE
-OR REPLACE FUNCTION eliminarResiduo(ids int) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION eliminarResiduo(ids int) RETURNS void AS $$ BEGIN
 DELETE FROM
     RESIDUO
 WHERE
@@ -70,11 +70,11 @@ WHERE
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 CREATE
-OR REPLACE FUNCTION actualizarResiduo(ids int, nombres varchar(20)) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION actualizarResiduo(ids int, nombres varchar(20)) RETURNS void AS $$ BEGIN
 UPDATE
     RESIDUO
 SET
@@ -84,7 +84,7 @@ WHERE
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE TIPO_USUARIO(
 ------- CRUD TIPO USUARIO   
 
 CREATE
-OR REPLACE FUNCTION insertarTipoUsuario(descripcion VARCHAR(50)) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION insertarTipoUsuario(descripcion VARCHAR(50)) RETURNS void AS $$ BEGIN
 INSERT INTO
     TIPO_USUARIO(descripcion)
 VALUES
@@ -106,11 +106,11 @@ VALUES
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 CREATE
-OR REPLACE FUNCTION eliminarTipoUsuario(ids int) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION eliminarTipoUsuario(ids int) RETURNS void AS $$ BEGIN
 DELETE FROM
     TIPO_USUARIO
 WHERE
@@ -118,11 +118,11 @@ WHERE
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 CREATE
-OR REPLACE FUNCTION modificarTipoUsuario(ids int, descripcion1 VARCHAR(50)) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION modificarTipoUsuario(ids int, descripcion1 VARCHAR(50)) RETURNS void AS $$ BEGIN
 UPDATE
     TIPO_USUARIO
 SET
@@ -132,7 +132,7 @@ WHERE
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -145,7 +145,7 @@ CREATE TABLE TIPO_INCENTIVO(
 -------CRUD tipo_incentivo
 
 CREATE
-OR REPLACE FUNCTION insertar_tipoIncentivo(nombres VARCHAR, descripcions VARCHAR) RETURNS void AS $ $ BEGIN
+OR REPLACE FUNCTION insertar_tipoIncentivo(nombres VARCHAR, descripcions VARCHAR) RETURNS void AS $$ BEGIN
 INSERT INTO
     TIPO_INCENTIVO (nombre, descripcion)
 VALUES
@@ -153,7 +153,7 @@ VALUES
 
 END;
 
-$ $ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 CREATE
@@ -319,7 +319,7 @@ $$ LANGUAGE plpgsql;
 --------------------------------------------------------------------------------------------------------------------------------
 create table empadronamiento(
     id serial primary key,
-    nombre varchar(30),
+    nombre varchar(30) not null,
     descripcion varchar(100)
 );
 
@@ -529,10 +529,10 @@ create table ciudadano(
     apellido varchar(50),
     documento varchar(20) unique,
     celular char(9) not null unique,
-    direccion varchar(100),
+    direccion varchar(100) not null,
     estado boolean not null,
     idTipoDoc serial not null,
-    idEmpadro serial not null,
+    idEmpadro serial,
     idTipoCiud serial not null,
     constraint fk1_ciudadano foreign key(idTipoDoc) references tipoDocumento(id),
     constraint fk2_ciudadano foreign key(idEmpadro) references empadronamiento(id),
@@ -587,7 +587,7 @@ $$ LANGUAGE plpgsql;
 create table maquinaria(
     id serial primary key,
     nombre varchar(30) not null,
-    placa char(7) unique not null,
+    placa char(7) not null unique,
     estado boolean not null,
     cargaNeta float not null,
     cargaUtil float not null,
