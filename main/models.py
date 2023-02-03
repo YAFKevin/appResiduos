@@ -63,7 +63,7 @@ class ciudadano(models.Model):
     documento = models.CharField(max_length=20, unique=True)
     celular = models.CharField(max_length=9, unique=True)
     direccion = models.CharField(max_length=100)
-    estado = models.BooleanField()
+    estado = models.BooleanField() 
     idTipoDoc = models.ForeignKey(tipoDocumento, on_delete=models.CASCADE)
     idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
     idTipoCiud = models.ForeignKey(tipoCiudadano, on_delete=models.CASCADE)
