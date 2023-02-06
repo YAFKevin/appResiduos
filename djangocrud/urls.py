@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main import views
+from main import views 
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('tipoDocumento/', views.tipoDocumento, name='tipoDocumento'),
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
+    path('tipoDocumento/crear/', views.crearTipoDocumento, name='crearTipoDocumento'),
 ]

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Registar tipo de documento</h1>
+
+<form action="/tipoDocumento/crear/" method="POST">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button>
+        Guardar
+    </button>
+
+</form>
+{% endblock %}
