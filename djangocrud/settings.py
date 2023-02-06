@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'appResiduosSolidos',
+        'NAME': 'appResiduosSolidos1',
         'USER': 'postgres',
         'PASSWORD': 'hola2311',
         'HOST': '127.0.0.1',

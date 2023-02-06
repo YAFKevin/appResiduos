@@ -1,11 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class tipoDocumento(models.Model):
-    nombre = models.CharField(max_length= 20)
+    nombre = models.CharField(max_length= 20, unique=True)
+    def __str__(self):
+        return self.nombres
 
 class tipoMaquinaria(models.Model):
-    descripcion = models.TextField(blank=True)
+    nombre = models.CharField(max_length=20, unique=True, null=True)
+
 
 class residuo(models.Model):
     nombre = models.CharField(max_length=20, unique=True)
@@ -33,12 +37,12 @@ class empadronamiento(models.Model):
     nombre = models.CharField(max_length=30)
     descripcion = models.TextField(blank=True)
 
-class usuario(models.Model):
-    nombre_usuario = models.CharField(max_length=30, unique=True)
-    nombreCompleto = models.CharField(max_length=100)
-    contraseña = models.CharField(max_length=30)
-    estado = models.BooleanField()
-    TipoUsuario_ID = models.ForeignKey(tipoUsuario, on_delete=models.CASCADE)
+# class usuario(models.Model):
+#     nombre_usuario = models.CharField(max_length=30, unique=True)
+#     nombreCompleto = models.CharField(max_length=100)
+#     contraseña = models.CharField(max_length=30)
+#     estado = models.BooleanField()
+#     TipoUsuario_ID = models.ForeignKey(tipoUsuario, on_delete=models.CASCADE)
 
 class personal(models.Model):
     nombre = models.CharField(max_length=50)
@@ -95,12 +99,11 @@ class recoleccion(models.Model):
     Maquinaria_ID = models.ForeignKey(maquinaria, on_delete=models.CASCADE)
     Residuo_ID = models.ForeignKey(residuo, on_delete=models.CASCADE)
     Horario_ID = models.ForeignKey(horario, on_delete=models.CASCADE)
-    Usuario_ID = models.ForeignKey(usuario, on_delete=models.CASCADE)
-
-
+    Usuario_ID = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class detalleIncentivo(models.Model):
     cantidad = models.IntegerField()
     idTipoIncentivo = models.ForeignKey(tipoIncentivo, on_delete=models.CASCADE)
     idRecoleccion = models.ForeignKey(recoleccion, on_delete=models.CASCADE)
     idCiudadano = models.ForeignKey(ciudadano, on_delete=models.CASCADE)
+
