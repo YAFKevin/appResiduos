@@ -75,7 +75,16 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'dbresiduossolidos',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'hola2311',
+    #     'HOST': 'dbresiduossolidos.copjub74i6fk.us-east-1.rds.amazonaws.com',
+    #     'PORT': '5432',
+    # }
+
+     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'appResiduosSolidos1',
         'USER': 'postgres',
@@ -110,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'America/Lima'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

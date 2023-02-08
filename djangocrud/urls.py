@@ -26,4 +26,7 @@ urlpatterns = [
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
     path('tipoDocumento/crear/', views.crearTipoDocumento, name='crearTipoDocumento'),
+    path('tipoCiudadano/crear/', views.crearTipoCiudadano, name='crearTipoCiudadano'),
+    path('tipoMaquinaria/crear/', views.crearTipoMaquinaria, name='crearTipoMaquinaria'),
+    path('residuo/crear/', views.crearResiduo, name='crearResiduo'),
 ]
