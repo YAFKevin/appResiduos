@@ -29,4 +29,9 @@ urlpatterns = [
     path('tipoCiudadano/crear/', views.crearTipoCiudadano, name='crearTipoCiudadano'),
     path('tipoMaquinaria/crear/', views.crearTipoMaquinaria, name='crearTipoMaquinaria'),
     path('residuo/crear/', views.crearResiduo, name='crearResiduo'),
+    path('tipoIncentivo/crear/', views.crearTipoIncentivo, name='crearTipoIncentivo'),
+    path('tipoPersonal/crear/', views.crearTipoPersonal, name='crearTipoPersonal'),
+    path('zona/crear/', views.crearZona, name='crearZona'),
+    path('empadronamiento/crear/', views.crearEmpadronamiento, name='crearEmpadronamiento'),
+    path('personal/crear/', views.crearPersonal, name='crearPersonal'),
 ]

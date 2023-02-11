@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm
+from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, empadronamientoForm, personalForm
 # Create your views here.
 
 
@@ -135,6 +135,7 @@ def crearTipoMaquinaria(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 def crearResiduo(request):
 
     if request.method == 'GET':
@@ -152,5 +153,110 @@ def crearResiduo(request):
         except ValueError:
             return render(request, 'crearResiduo.html', {
                 'form': residuoForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearTipoIncentivo(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearTipoIncentivo.html', {
+            'form': tipoIncentivoForm
+        })
+    else:
+        try:
+            form = tipoIncentivoForm(request.POST)
+            newTipoIncentivo = form.save(commit=False)
+            newTipoIncentivo.save()
+            return render(request, 'crearTipoIncentivo.html', {
+                'form': tipoIncentivoForm
+            })
+        except ValueError:
+            return render(request, 'crearTipoIncentivo.html', {
+                'form': tipoIncentivoForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearTipoPersonal(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearTipoPersonal.html', {
+            'form': tipoPersonalForm
+        })
+    else:
+        try:
+            form = tipoPersonalForm(request.POST)
+            newTipoPersonal = form.save(commit=False)
+            newTipoPersonal.save()
+            return render(request, 'crearTipoPersonal.html', {
+                'form': tipoPersonalForm
+            })
+        except ValueError:
+            return render(request, 'crearTipoPersonal.html', {
+                'form': tipoPersonalForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearZona(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearZona.html', {
+            'form': zonaForm
+        })
+    else:
+        try:
+            form = zonaForm(request.POST)
+            newZona = form.save(commit=False)
+            newZona.save()
+            return render(request, 'crearZona.html', {
+                'form': zonaForm
+            })
+        except ValueError:
+            return render(request, 'crearZona.html', {
+                'form': zonaForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearEmpadronamiento(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearEmpadronamiento.html', {
+            'form': empadronamientoForm
+        })
+    else:
+        try:
+            form = empadronamientoForm(request.POST)
+            newEmpadronamiento = form.save(commit=False)
+            newEmpadronamiento.save()
+            return render(request, 'crearEmpadronamiento.html', {
+                'form': empadronamientoForm
+            })
+        except ValueError:
+            return render(request, 'crearEmpadronamiento.html', {
+                'form': empadronamientoForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearPersonal(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearPersonal.html', {
+            'form': personalForm
+        })
+    else:
+        try:
+            form = personalForm(request.POST)
+            newPersonal = form.save(commit=False)
+            newPersonal.save()
+            return render(request, 'crearPersonal.html', {
+                'form': personalForm
+            })
+        except ValueError:
+            return render(request, 'crearPersonal.html', {
+                'form': personalForm,
                 'error': 'Por favor, ingrese un dato válido'
             })

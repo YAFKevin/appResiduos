@@ -20,13 +20,13 @@ class residuo(models.Model):
     def __str__(self):
         return self.nombre
 
-class tipoUsuario(models.Model):
-    nombre = models.CharField(max_length=30)
-    descripcion = models.TextField(blank=True)
-    estado = models.BooleanField()
+# class tipoUsuario(models.Model):
+#     nombre = models.CharField(max_length=30)
+#     descripcion = models.TextField(blank=True)
+#     estado = models.BooleanField()
 
-    def __str__(self):
-        return self.nombre
+#     def __str__(self):
+#         return self.nombre
 
 class tipoIncentivo(models.Model):
     nombre = models.CharField(max_length=35)
@@ -129,7 +129,15 @@ class horario(models.Model):
 
     #mostrar la ruta con la hora y fecha del horario en string
     def __str__(self):
-        return self.idRuta.nombreruta + ' | ' +  str(self.fecha) + ' ' + str(self.hora)    
+        return self.idRuta.nombreruta + ' | ' +  str(self.fecha) + ' ' + str(self.hora)  
+
+
+class tipoRecoleccion(models.Model):
+    nombre = models.CharField(max_length=40)
+    descripcion = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.nombre  
 
 
 class recoleccion(models.Model):
@@ -140,6 +148,7 @@ class recoleccion(models.Model):
     Residuo_ID = models.ForeignKey(residuo, on_delete=models.CASCADE)
     Horario_ID = models.ForeignKey(horario, on_delete=models.CASCADE)
     Usuario_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    TipoRecoleccion_ID = models.ForeignKey(tipoRecoleccion, on_delete=models.CASCADE, null = True)
 
     #mostrar el el nombre del residuo y la fecha de recoleccion en string
     def __str__(self):
