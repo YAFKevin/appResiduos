@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, empadronamientoForm, personalForm
+from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm
 # Create your views here.
 
 
@@ -220,25 +220,25 @@ def crearZona(request):
             })
 
 
-def crearEmpadronamiento(request):
+# def crearEmpadronamiento(request):
 
-    if request.method == 'GET':
-        return render(request, 'crearEmpadronamiento.html', {
-            'form': empadronamientoForm
-        })
-    else:
-        try:
-            form = empadronamientoForm(request.POST)
-            newEmpadronamiento = form.save(commit=False)
-            newEmpadronamiento.save()
-            return render(request, 'crearEmpadronamiento.html', {
-                'form': empadronamientoForm
-            })
-        except ValueError:
-            return render(request, 'crearEmpadronamiento.html', {
-                'form': empadronamientoForm,
-                'error': 'Por favor, ingrese un dato válido'
-            })
+#     if request.method == 'GET':
+#         return render(request, 'crearEmpadronamiento.html', {
+#             'form': empadronamientoForm
+#         })
+#     else:
+#         try:
+#             form = empadronamientoForm(request.POST)
+#             newEmpadronamiento = form.save(commit=False)
+#             newEmpadronamiento.save()
+#             return render(request, 'crearEmpadronamiento.html', {
+#                 'form': empadronamientoForm
+#             })
+#         except ValueError:
+#             return render(request, 'crearEmpadronamiento.html', {
+#                 'form': empadronamientoForm,
+#                 'error': 'Por favor, ingrese un dato válido'
+#             })
 
 
 def crearPersonal(request):

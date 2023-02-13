@@ -49,12 +49,12 @@ class zona(models.Model):
     def __str__(self):
         return self.nombre
 
-class empadronamiento(models.Model):
-    nombre = models.CharField(max_length=30)
-    descripcion = models.TextField(blank=True)
+# class empadronamiento(models.Model):
+#     nombre = models.CharField(max_length=30)
+#     descripcion = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.nombre
+#     def __str__(self):
+#         return self.nombre
 
 # class usuario(models.Model):
 #     nombre_usuario = models.CharField(max_length=30, unique=True)
@@ -71,10 +71,10 @@ class personal(models.Model):
     correo = models.CharField(max_length=100, unique=True)
     celular = models.CharField(max_length=9, unique=True)
     direccion = models.CharField(max_length=100)
-    estado = models.BooleanField()
+    estado = models.BooleanField(default=True)
     idTipoDoc = models.ForeignKey(tipoDocumento, on_delete=models.CASCADE)
     idTipoPersonal = models.ForeignKey(tipoPersonal, on_delete=models.CASCADE)
-    idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
+    # idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.apellido + ' ' + self.nombre
@@ -94,7 +94,7 @@ class ciudadano(models.Model):
     direccion = models.CharField(max_length=100)
     estado = models.BooleanField() 
     idTipoDoc = models.ForeignKey(tipoDocumento, on_delete=models.CASCADE)
-    idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
+    # idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
     idTipoCiud = models.ForeignKey(tipoCiudadano, on_delete=models.CASCADE)
 
     def __str__(self):

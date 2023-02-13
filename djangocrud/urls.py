@@ -32,6 +32,6 @@ urlpatterns = [
     path('tipoIncentivo/crear/', views.crearTipoIncentivo, name='crearTipoIncentivo'),
     path('tipoPersonal/crear/', views.crearTipoPersonal, name='crearTipoPersonal'),
     path('zona/crear/', views.crearZona, name='crearZona'),
-    path('empadronamiento/crear/', views.crearEmpadronamiento, name='crearEmpadronamiento'),
+    # path('empadronamiento/crear/', views.crearEmpadronamiento, name='crearEmpadronamiento'),
     path('personal/crear/', views.crearPersonal, name='crearPersonal'),
 ]

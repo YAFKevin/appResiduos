@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, empadronamiento, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, recoleccion, detalleIncentivo, tipoRecoleccion
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, recoleccion, detalleIncentivo, tipoRecoleccion
 
 
 # Register your models here.
@@ -11,7 +11,7 @@ admin.site.register(residuo)
 admin.site.register(tipoIncentivo)
 admin.site.register(tipoPersonal)   
 admin.site.register(zona)
-admin.site.register(empadronamiento)
+# admin.site.register(empadronamiento)
 admin.site.register(personal)
 admin.site.register(tipoCiudadano)
 admin.site.register(ciudadano)
