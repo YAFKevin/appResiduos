@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Registar detalle de incentivo</h1>
+
+{{error}}
+
+<form action="/detalleIncentivo/crear/" method="POST">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button>
+        Guardar
+    </button>
+
+</form>
+{% endblock %}

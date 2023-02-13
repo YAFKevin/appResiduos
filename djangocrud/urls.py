@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
     path('signup/', views.signup, name='signup'),
-    path('tipoDocumento/', views.tipoDocumento, name='tipoDocumento'),
+    path('tipoDocumento/', views.listarTipoDocumento, name='tipoDocumento'),
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
     path('tipoDocumento/crear/', views.crearTipoDocumento, name='crearTipoDocumento'),
@@ -34,4 +34,12 @@ urlpatterns = [
     path('zona/crear/', views.crearZona, name='crearZona'),
     # path('empadronamiento/crear/', views.crearEmpadronamiento, name='crearEmpadronamiento'),
     path('personal/crear/', views.crearPersonal, name='crearPersonal'),
+    path('ciudadano/crear/', views.crearCiudadano, name='crearCiudadano'),
+    path('maquinaria/crear/', views.crearMaquinaria, name='crearMaquinaria'),
+    path('ruta/crear/', views.crearRuta, name='crearRuta'),
+    path('horario/crear/', views.crearHorario, name='crearHorario'),
+    path('tipoRecoleccion/crear/', views.crearTipoRecoleccion, name='crearTipoRecoleccion'),
+    path('recoleccion/crear/', views.crearRecoleccion, name='crearRecoleccion'),
+    path('detalleIncentivo/crear/', views.crearDetalleIncentivo, name='crearDetalleIncentivo'),
+    
 ]

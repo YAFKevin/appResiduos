@@ -110,16 +110,16 @@ class maquinaria(models.Model):
     idTipoMaqui = models.ForeignKey(tipoMaquinaria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.placa
+        return self.placa + ' | ' + self.nombre + ' | ' + self.idTipoMaqui.nombre
 
 class ruta(models.Model):
-    nombreruta = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200)
     lugarInicio = models.CharField(max_length=100)
     lugarFin = models.CharField(max_length=100)
     idZona = models.ForeignKey(zona, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.nombreruta
+        return self.nombre
 
 class horario(models.Model):
     fecha = models.DateField()

@@ -2,4 +2,18 @@
 
 {% block content %}
 <h1>Tipo de Documento</h1>
+
+
+
+<ul>
+    {% for tipoDocumento in tipoDocumentos %}
+
+    <li>
+        {{tipoDocumento.nombres}}        
+    </li>
+
+    {% endfor %}
+
+</ul>
+
 {% endblock %}

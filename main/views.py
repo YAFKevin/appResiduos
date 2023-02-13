@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm
-# Create your views here.
+from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm
+from .models import tipoDocumento
 
 
 def home(request):
@@ -36,8 +36,17 @@ def signup(request):
             "error": 'Las contraseñas no coinciden'})
 
 
-def tipoDocumento(request):
-    return render(request, 'tipoDocumento.html')
+# def tipoDocumento(request):
+#     tiposDocumentos = tipoDocumento.objects.all()
+
+#     return render(request, 'tipoDocumento.html', {'tipoDocumentos': tiposDocumentos})
+
+
+def listarTipoDocumento(request):
+    tipoDocumentos = tipoDocumento.objects.all()
+
+    return render(request, 'tipoDocumento.html', {'tipoDocumentos': tipoDocumentos})
+
 
 
 def signout(request):
@@ -90,27 +99,6 @@ def crearTipoDocumento(request):
         except ValueError:
             return render(request, 'crearTipoDocumento.html', {
                 'form': tipoDocumentoForm,
-                'error': 'Por favor, ingrese un dato válido'
-            })
-
-
-def crearTipoCiudadano(request):
-
-    if request.method == 'GET':
-        return render(request, 'crearTipoCiudadano.html', {
-            'form': tipoCiudadanoForm
-        })
-    else:
-        try:
-            form = tipoCiudadanoForm(request.POST)
-            newTipoCiudadano = form.save(commit=False)
-            newTipoCiudadano.save()
-            return render(request, 'crearTipoCiudadano.html', {
-                'form': tipoCiudadanoForm
-            })
-        except ValueError:
-            return render(request, 'crearTipoCiudadano.html', {
-                'form': tipoCiudadanoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
 
@@ -220,6 +208,48 @@ def crearZona(request):
             })
 
 
+def crearPersonal(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearPersonal.html', {
+            'form': personalForm
+        })
+    else:
+        try:
+            form = personalForm(request.POST)
+            newPersonal = form.save(commit=False)
+            newPersonal.save()
+            return render(request, 'crearPersonal.html', {
+                'form': personalForm
+            })
+        except ValueError:
+            return render(request, 'crearPersonal.html', {
+                'form': personalForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+def crearTipoCiudadano(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearTipoCiudadano.html', {
+            'form': tipoCiudadanoForm
+        })
+    else:
+        try:
+            form = tipoCiudadanoForm(request.POST)
+            newTipoCiudadano = form.save(commit=False)
+            newTipoCiudadano.save()
+            return render(request, 'crearTipoCiudadano.html', {
+                'form': tipoCiudadanoForm
+            })
+        except ValueError:
+            return render(request, 'crearTipoCiudadano.html', {
+                'form': tipoCiudadanoForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
 # def crearEmpadronamiento(request):
 
 #     if request.method == 'GET':
@@ -241,22 +271,141 @@ def crearZona(request):
 #             })
 
 
-def crearPersonal(request):
+def crearCiudadano(request):
 
     if request.method == 'GET':
-        return render(request, 'crearPersonal.html', {
-            'form': personalForm
+        return render(request, 'crearCiudadano.html', {
+            'form': ciudadanoForm
         })
     else:
         try:
-            form = personalForm(request.POST)
-            newPersonal = form.save(commit=False)
-            newPersonal.save()
-            return render(request, 'crearPersonal.html', {
-                'form': personalForm
+            form = ciudadanoForm(request.POST)
+            newCiudadano = form.save(commit=False)
+            newCiudadano.save()
+            return render(request, 'crearCiudadano.html', {
+                'form': ciudadanoForm
             })
         except ValueError:
-            return render(request, 'crearPersonal.html', {
-                'form': personalForm,
+            return render(request, 'crearCiudadano.html', {
+                'form': ciudadanoForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+        
+def crearMaquinaria(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearMaquinaria.html', {
+            'form': maquinariaForm
+        })
+    else:
+        try:
+            form = maquinariaForm(request.POST)
+            newMaquinaria = form.save(commit=False)
+            newMaquinaria.save()
+            return render(request, 'crearMaquinaria.html', {
+                'form': maquinariaForm
+            })
+        except ValueError:
+            return render(request, 'crearMaquinaria.html', {
+                'form': maquinariaForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+        
+def crearRuta(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearRuta.html', {
+            'form': rutaForm
+        })
+    else:
+        try:
+            form = rutaForm(request.POST)
+            newRuta = form.save(commit=False)
+            newRuta.save()
+            return render(request, 'crearRuta.html', {
+                'form': rutaForm
+            })
+        except ValueError:
+            return render(request, 'crearRuta.html', {
+                'form': rutaForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+        
+def crearHorario(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearHorario.html', {
+            'form': horarioForm
+        })
+    else:
+        try:
+            form = horarioForm(request.POST)
+            newHorario = form.save(commit=False)
+            newHorario.save()
+            return render(request, 'crearHorario.html', {
+                'form': horarioForm
+            })
+        except ValueError:
+            return render(request, 'crearHorario.html', {
+                'form': horarioForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+def crearTipoRecoleccion(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearTipoRecoleccion.html', {
+            'form': tipoRecoleccionForm
+        })
+    else:
+        try:
+            form = tipoRecoleccionForm(request.POST)
+            newTipoRecoleccion = form.save(commit=False)
+            newTipoRecoleccion.save()
+            return render(request, 'crearTipoRecoleccion.html', {
+                'form': tipoRecoleccionForm
+            })
+        except ValueError:
+            return render(request, 'crearTipoRecoleccion.html', {
+                'form': tipoRecoleccionForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+def crearRecoleccion(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearRecoleccion.html', {
+            'form': recoleccionForm
+        })
+    else:
+        try:
+            form = recoleccionForm(request.POST)
+            newRecoleccion = form.save(commit=False)
+            newRecoleccion.save()
+            return render(request, 'crearRecoleccion.html', {
+                'form': recoleccionForm
+            })
+        except ValueError:
+            return render(request, 'crearRecoleccion.html', {
+                'form': recoleccionForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+def crearDetalleIncentivo(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearDetalleIncentivo.html', {
+            'form': detalleIncentivoForm
+        })
+    else:
+        try:
+            form = detalleIncentivoForm(request.POST)
+            newDetalleIncentivo = form.save(commit=False)
+            newDetalleIncentivo.save()
+            return render(request, 'crearDetalleIncentivo.html', {
+                'form': detalleIncentivoForm
+            })
+        except ValueError:
+            return render(request, 'crearDetalleIncentivo.html', {
+                'form': detalleIncentivoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
