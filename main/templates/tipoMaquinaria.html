@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de tipos de maquinaria</h1>
+
+
+
+<ul>
+    {% for tipoMaquinaria in tipoMaquinarias %}
+
+    <li>
+        {{tipoMaquinaria.nombre}}        
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

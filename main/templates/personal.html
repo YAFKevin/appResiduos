@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de personal</h1>
+
+
+
+<ul>
+    {% for personal in personals %}
+
+    <li>
+        <h2>{{personal.nombre}} {{personal.apellido}}</h2>
+        <p>{{personal.documento}}</p>
+        <p>{{personal.fechaNacimiento}}</p>
+        <p>{{personal.correo}}</p>
+        <p>{{personal.celular}}</p>
+        <p>{{personal.direccion}}</p>
+        <p>{{personal.estado}}</p>
+        <p>{{personal.idTipoDoc}}</p>
+        <p>{{personal.idTipoPersonal}}</p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de rutas</h1>
+
+
+
+<ul>
+    {% for ruta in rutas %}
+
+    <li>
+        <h2>{{ruta.nombre}}</h2>
+        <p>{{ruta.lugarInicio}}</p>
+        <p>{{ruta.lugarFin}}</p>
+        <p>{{ruta.idZona}}</p>    
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

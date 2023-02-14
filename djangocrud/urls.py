@@ -23,6 +23,20 @@ urlpatterns = [
     path('',views.home, name='home'),
     path('signup/', views.signup, name='signup'),
     path('tipoDocumento/', views.listarTipoDocumento, name='tipoDocumento'),
+    path('tipoMaquinaria/', views.listarTipoMaquinaria, name='tipoMaquinaria'),
+    path('tipoIncentivo/', views.listarTipoIncentivo, name='tipoIncentivo'),
+    path('tipoPersonal/', views.listarTipoPersonal, name='tipoPersonal'),
+    path('residuo/', views.listarResiduo, name='residuo'),
+    path('zona/', views.listarZona, name='zona'),
+    path('personal/', views.listarPersonal, name='personal'),
+    path('tipoCiudadano/', views.listarTipoCiudadano, name='tipoCiudadano'),
+    path('ciudadano/', views.listarCiudadano, name='ciudadano'),
+    path('maquinaria/', views.listarMaquinaria, name='maquinaria'),
+    path('ruta/', views.listarRuta, name='ruta'),
+    path('horario/', views.listarHorario, name='horario'),
+
+
+
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
     path('tipoDocumento/crear/', views.crearTipoDocumento, name='crearTipoDocumento'),

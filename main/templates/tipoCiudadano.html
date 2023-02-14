@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de tipos de ciudadano</h1>
+
+
+
+<ul>
+    {% for tipoCiudadano in tipoCiudadanos %}
+
+    <li>
+        <h2>{{tipoCiudadano.nombre}}</h2>
+        <p>{{tipoCiudadano.descripcion}}</p>       
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

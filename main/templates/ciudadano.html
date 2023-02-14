@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de ciudadano</h1>
+
+
+
+<ul>
+    {% for ciudadano in ciudadanos %}
+
+    <li>
+        <h2>{{ciudadano.nombre}} {{ciudadano.apellido}}</h2>
+        <p>{{ciudadano.documento}}</p>
+        <p>{{ciudadano.celular}}</p>
+        <p>{{ciudadano.direccion}}</p>
+        <p>{{ciudadano.estado}}</p>
+        <p>{{ciudadano.idTipoDoc}}</p>
+        <p>{{ciudadano.idTipoCiud}}</p>         
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

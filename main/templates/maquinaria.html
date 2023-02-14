@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de maquinaria</h1>
+
+
+
+<ul>
+    {% for maquinaria in maquinarias %}
+
+    <li>
+        <h2>{{maquinaria.nombre}}</h2>
+        <p>{{maquinaria.placa}}</p>
+        <p>{{maquinaria.estado}}</p>
+        <p>{{maquinaria.cargaNeta}}</p>
+        <p>{{maquinaria.cargaUtil}}</p>
+        <p>{{maquinaria.idTipoMaqui}}</p>      
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

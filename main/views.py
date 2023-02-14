@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm
-from .models import tipoDocumento
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario
 
 
 def home(request):
@@ -48,6 +48,69 @@ def listarTipoDocumento(request):
     return render(request, 'tipoDocumento.html', {'tipoDocumentos': tipoDocumentos})
 
 
+def listarTipoMaquinaria(request):
+    tipoMaquinarias = tipoMaquinaria.objects.all()
+
+    return render(request, 'tipoMaquinaria.html', {'tipoMaquinarias': tipoMaquinarias})
+
+
+def listarResiduo(request):
+    residuos = residuo.objects.all()
+
+    return render(request, 'residuo.html', {'residuos': residuos})
+
+
+def listarTipoIncentivo(request):
+    tipoIncentivos = tipoIncentivo.objects.all()
+
+    return render(request, 'tipoIncentivo.html', {'tipoIncentivos': tipoIncentivos})
+
+
+def listarTipoPersonal(request):
+    tipoPersonals = tipoPersonal.objects.all()
+
+    return render(request, 'tipoPersonal.html', {'tipoPersonals': tipoPersonals})
+
+
+def listarZona(request):
+    zonas = zona.objects.all()
+
+    return render(request, 'zona.html', {'zonas': zonas})
+
+
+def listarPersonal(request):
+    personals = personal.objects.all()
+
+    return render(request, 'personal.html', {'personals': personals})
+
+
+def listarTipoCiudadano(request):
+    tipoCiudadanos = tipoCiudadano.objects.all()
+
+    return render(request, 'tipoCiudadano.html', {'tipoCiudadanos': tipoCiudadanos})
+
+
+def listarCiudadano(request):
+    ciudadanos = ciudadano.objects.all()
+
+    return render(request, 'ciudadano.html', {'ciudadanos': ciudadanos})
+
+
+def listarMaquinaria(request):
+    maquinarias = maquinaria.objects.all()
+
+    return render(request, 'maquinaria.html', {'maquinarias': maquinarias})
+
+
+def listarRuta(request):
+    rutas = ruta.objects.all()
+
+    return render(request, 'ruta.html', {'rutas': rutas})
+
+def listarHorario(request):
+    horarios = horario.objects.all()
+
+    return render(request, 'horario.html', {'horarios': horarios})
 
 def signout(request):
     logout(request)
@@ -290,7 +353,8 @@ def crearCiudadano(request):
                 'form': ciudadanoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
-        
+
+
 def crearMaquinaria(request):
 
     if request.method == 'GET':
@@ -310,7 +374,8 @@ def crearMaquinaria(request):
                 'form': maquinariaForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
-        
+
+
 def crearRuta(request):
 
     if request.method == 'GET':
@@ -330,7 +395,8 @@ def crearRuta(request):
                 'form': rutaForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
-        
+
+
 def crearHorario(request):
 
     if request.method == 'GET':
@@ -350,6 +416,8 @@ def crearHorario(request):
                 'form': horarioForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
+
 def crearTipoRecoleccion(request):
 
     if request.method == 'GET':
@@ -370,6 +438,7 @@ def crearTipoRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 def crearRecoleccion(request):
 
     if request.method == 'GET':
@@ -389,6 +458,7 @@ def crearRecoleccion(request):
                 'form': recoleccionForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 def crearDetalleIncentivo(request):
 

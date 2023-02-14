@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de residuos</h1>
+
+
+
+<ul>
+    {% for residuo in residuos %}
+
+    <li>
+        <h2>{{residuo.nombre}}</h2>
+        <p>{{residuo.descripcion}}</p> 
+        <p>Estado: {{residuo.estado}}</p>         
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

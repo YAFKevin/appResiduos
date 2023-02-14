@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de horarios</h1>
+
+
+
+<ul>
+    {% for horario in horarios %}
+
+    <li>
+        <h2>{{horario.fecha}}</h2>
+        <p>{{horario.hora}}</p>
+        <p>{{horario.estado}}</p>
+        <p>{{horario.idRuta}}</p>
+           
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
