@@ -34,8 +34,10 @@ urlpatterns = [
     path('maquinaria/', views.listarMaquinaria, name='maquinaria'),
     path('ruta/', views.listarRuta, name='ruta'),
     path('horario/', views.listarHorario, name='horario'),
-
-
+    path('tipoRecoleccion/', views.listarTipoRecoleccion, name='tipoRecoleccion'),
+    path('recoleccion/', views.listarRecoleccion, name='recoleccion'),
+    path('detalleIncentivo/', views.listarDetalleIncentivo, name='detalleIncentivo'),
+    
 
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),

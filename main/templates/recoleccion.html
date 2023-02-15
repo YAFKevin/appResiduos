@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de recolección</h1>
+
+
+
+<ul>
+    {% for recoleccion in recoleccions %}
+
+    <li>
+        <h2>{{ recoleccion.observacion }}</h2>
+        <p>{{ recoleccion.Personal_ID }}</p>
+        <p>{{ recoleccion.Maquinaria_ID }}</p>
+        <p>{{ recoleccion.Residuo_ID }}</p>
+        <p>{{ recoleccion.Horario_ID }}</p>
+        <p>{{ recoleccion.Usuario_ID }}</p>
+        <p>{{ recoleccion.TipoRecoleccion_ID }}</p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

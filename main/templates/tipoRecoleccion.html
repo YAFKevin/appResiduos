@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de tipo de recolección</h1>
+
+
+
+<ul>
+    {% for tipoRecoleccion in tipoRecoleccions %}
+
+    <li>
+        <h2>{{tipoRecoleccion.nombre}}</h2>
+        <p>{{tipoRecoleccion.descripcion}}</p>
+
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

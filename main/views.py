@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm
-from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo
 
 
 def home(request):
@@ -107,10 +107,30 @@ def listarRuta(request):
 
     return render(request, 'ruta.html', {'rutas': rutas})
 
+
 def listarHorario(request):
     horarios = horario.objects.all()
 
     return render(request, 'horario.html', {'horarios': horarios})
+
+
+def listarTipoRecoleccion(request):
+    tipoRecoleccions = tipoRecoleccion.objects.all()
+
+    return render(request, 'tipoRecoleccion.html', {'tipoRecoleccions': tipoRecoleccions})
+
+
+def listarRecoleccion(request):
+    recoleccions = recoleccion.objects.all()
+
+    return render(request, 'recoleccion.html', {'recoleccions': recoleccions})
+
+
+def listarDetalleIncentivo(request):
+    detalleIncentivos = detalleIncentivo.objects.all()
+
+    return render(request, 'detalleIncentivo.html', {'detalleIncentivos': detalleIncentivos})
+
 
 def signout(request):
     logout(request)
@@ -138,8 +158,6 @@ def signin(request):
         return render(request, 'signin.html', {
             'form': AuthenticationForm
         })
-
-# crear
 
 
 def crearTipoDocumento(request):
@@ -313,27 +331,6 @@ def crearTipoCiudadano(request):
             })
 
 
-# def crearEmpadronamiento(request):
-
-#     if request.method == 'GET':
-#         return render(request, 'crearEmpadronamiento.html', {
-#             'form': empadronamientoForm
-#         })
-#     else:
-#         try:
-#             form = empadronamientoForm(request.POST)
-#             newEmpadronamiento = form.save(commit=False)
-#             newEmpadronamiento.save()
-#             return render(request, 'crearEmpadronamiento.html', {
-#                 'form': empadronamientoForm
-#             })
-#         except ValueError:
-#             return render(request, 'crearEmpadronamiento.html', {
-#                 'form': empadronamientoForm,
-#                 'error': 'Por favor, ingrese un dato válido'
-#             })
-
-
 def crearCiudadano(request):
 
     if request.method == 'GET':
@@ -479,3 +476,4 @@ def crearDetalleIncentivo(request):
                 'form': detalleIncentivoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+

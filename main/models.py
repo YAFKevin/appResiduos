@@ -129,7 +129,7 @@ class horario(models.Model):
 
     #mostrar la ruta con la hora y fecha del horario en string
     def __str__(self):
-        return self.idRuta.nombreruta + ' | ' +  str(self.fecha) + ' ' + str(self.hora)  
+        return self.idRuta.nombre + ' | ' +  str(self.fecha) + ' ' + str(self.hora)  
 
 
 class tipoRecoleccion(models.Model):

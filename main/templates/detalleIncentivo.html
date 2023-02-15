@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de detalle de incentivos</h1>
+
+
+
+<ul>
+    {% for detalleIncentivo in detalleIncentivos %}
+
+    <li>
+        <h2>{{detalleIncentivo.cantidad}}</h2>
+        <p>{{detalleIncentivo.idTipoIncentivo}}</p>
+        <p>{{detalleIncentivo.idRecoleccion}}</p>
+        <p>{{detalleIncentivo.idCiudadano}}</p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
