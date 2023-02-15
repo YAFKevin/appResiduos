@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <title>Sistema de Gestión de Residuos Sólidos</title>
     <!-- <link rel="stylesheet" href="{ % static 'main.css' % }"> -->
 </head>
+
 <body>
 
     <nav>
@@ -16,24 +18,55 @@
             <li>
                 <a href="/">Inicio</a>
             </li>
+
+            {% if user.is_authenticated %}
+
+            <li>
+                <a href="/ciudadano">Ciudadano</a>
+            </li>
+
+
+
+            <li>
+                <a href="/horario">Horario</a>
+            </li>
+
+            <li>
+                <a href="/personal">Personal</a>
+            </li>
+
+            <li>
+                <a href="/recoleccion">Recolección</a>
+            </li>
+
+            <li>
+                <a href="/residuo">Residuo</a>
+            </li>
+
+            <li>
+                <a href="/ruta">Ruta</a>
+            </li>
+
+            <li>
+                <a href="/zona">Zona</a>
+            </li>
+
+            <li>
+                <a href="/detalleIncentivo">Incentivo</a>
+            </li>
+
             <li>
                 <a href="/tipoDocumento">Tipo Documento</a>
             </li>
 
             <li>
-                <a href="/">Maquinaria</a>
+                <a href="/maquinaria">Maquinaria</a>
             </li>
-            <li>
-                <a href="/">Incentivo</a>
-            </li>
-            <li>
-                <a href="/">Recolección</a>
-            </li>
-            {% if user.is_authenticated %}
 
             <li>
                 <a href="/logout">Cerrar sesión</a>
             </li>
+
 
             {% else %}
             <li>
@@ -46,9 +79,10 @@
             {% endif %}
         </ul>
     </nav>
-    
+
     {% block content %}
     {% endblock %}
 
 </body>
+
 </html>

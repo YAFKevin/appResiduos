@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm
 from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'home.html')
@@ -36,96 +36,90 @@ def signup(request):
             "error": 'Las contraseñas no coinciden'})
 
 
-# def tipoDocumento(request):
-#     tiposDocumentos = tipoDocumento.objects.all()
-
-#     return render(request, 'tipoDocumento.html', {'tipoDocumentos': tiposDocumentos})
-
-
+@login_required
 def listarTipoDocumento(request):
     tipoDocumentos = tipoDocumento.objects.all()
 
     return render(request, 'tipoDocumento.html', {'tipoDocumentos': tipoDocumentos})
 
-
+@login_required
 def listarTipoMaquinaria(request):
     tipoMaquinarias = tipoMaquinaria.objects.all()
 
     return render(request, 'tipoMaquinaria.html', {'tipoMaquinarias': tipoMaquinarias})
 
-
+@login_required
 def listarResiduo(request):
     residuos = residuo.objects.all()
 
     return render(request, 'residuo.html', {'residuos': residuos})
 
-
+@login_required
 def listarTipoIncentivo(request):
     tipoIncentivos = tipoIncentivo.objects.all()
 
     return render(request, 'tipoIncentivo.html', {'tipoIncentivos': tipoIncentivos})
 
-
+@login_required
 def listarTipoPersonal(request):
     tipoPersonals = tipoPersonal.objects.all()
 
     return render(request, 'tipoPersonal.html', {'tipoPersonals': tipoPersonals})
 
-
+@login_required
 def listarZona(request):
     zonas = zona.objects.all()
 
     return render(request, 'zona.html', {'zonas': zonas})
 
-
+@login_required
 def listarPersonal(request):
     personals = personal.objects.all()
 
     return render(request, 'personal.html', {'personals': personals})
 
-
+@login_required
 def listarTipoCiudadano(request):
     tipoCiudadanos = tipoCiudadano.objects.all()
 
     return render(request, 'tipoCiudadano.html', {'tipoCiudadanos': tipoCiudadanos})
 
-
+@login_required
 def listarCiudadano(request):
     ciudadanos = ciudadano.objects.all()
 
     return render(request, 'ciudadano.html', {'ciudadanos': ciudadanos})
 
-
+@login_required
 def listarMaquinaria(request):
     maquinarias = maquinaria.objects.all()
 
     return render(request, 'maquinaria.html', {'maquinarias': maquinarias})
 
-
+@login_required
 def listarRuta(request):
     rutas = ruta.objects.all()
 
     return render(request, 'ruta.html', {'rutas': rutas})
-
 
 def listarHorario(request):
     horarios = horario.objects.all()
 
     return render(request, 'horario.html', {'horarios': horarios})
 
-
+@login_required
 def listarTipoRecoleccion(request):
     tipoRecoleccions = tipoRecoleccion.objects.all()
 
     return render(request, 'tipoRecoleccion.html', {'tipoRecoleccions': tipoRecoleccions})
 
-
+@login_required
 def listarRecoleccion(request):
     recoleccions = recoleccion.objects.all()
 
     return render(request, 'recoleccion.html', {'recoleccions': recoleccions})
 
-
+@login_required
 def listarDetalleIncentivo(request):
     detalleIncentivos = detalleIncentivo.objects.all()
 
@@ -159,7 +153,7 @@ def signin(request):
             'form': AuthenticationForm
         })
 
-
+@login_required
 def crearTipoDocumento(request):
 
     if request.method == 'GET':
@@ -183,7 +177,7 @@ def crearTipoDocumento(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearTipoMaquinaria(request):
 
     if request.method == 'GET':
@@ -204,7 +198,7 @@ def crearTipoMaquinaria(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearResiduo(request):
 
     if request.method == 'GET':
@@ -225,7 +219,7 @@ def crearResiduo(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearTipoIncentivo(request):
 
     if request.method == 'GET':
@@ -246,7 +240,7 @@ def crearTipoIncentivo(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearTipoPersonal(request):
 
     if request.method == 'GET':
@@ -267,7 +261,7 @@ def crearTipoPersonal(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearZona(request):
 
     if request.method == 'GET':
@@ -288,7 +282,7 @@ def crearZona(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearPersonal(request):
 
     if request.method == 'GET':
@@ -309,7 +303,7 @@ def crearPersonal(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearTipoCiudadano(request):
 
     if request.method == 'GET':
@@ -330,7 +324,7 @@ def crearTipoCiudadano(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearCiudadano(request):
 
     if request.method == 'GET':
@@ -351,7 +345,7 @@ def crearCiudadano(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearMaquinaria(request):
 
     if request.method == 'GET':
@@ -372,7 +366,7 @@ def crearMaquinaria(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearRuta(request):
 
     if request.method == 'GET':
@@ -393,7 +387,7 @@ def crearRuta(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearHorario(request):
 
     if request.method == 'GET':
@@ -414,7 +408,7 @@ def crearHorario(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearTipoRecoleccion(request):
 
     if request.method == 'GET':
@@ -435,7 +429,7 @@ def crearTipoRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearRecoleccion(request):
 
     if request.method == 'GET':
@@ -456,7 +450,7 @@ def crearRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
-
+@login_required
 def crearDetalleIncentivo(request):
 
     if request.method == 'GET':
@@ -477,3 +471,25 @@ def crearDetalleIncentivo(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+@login_required
+def recoleccionDetail(request, recoleccion_id):
+    if request.method == 'GET':
+        recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
+        form = recoleccionForm(instance=recoleccions)
+        return render(request, 'recoleccionDetail.html', {'recoleccion': recoleccions, 'form': form})
+    else:
+        try:
+            recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
+            form = recoleccionForm(request.POST, instance=recoleccions)
+            form.save()
+            return redirect('recoleccion')
+        except ValueError:
+            return render(request, 'recoleccionDetail.html', {'recoleccion': recoleccions, 'form': form, 'error': 'Error al actualizar datos'})
+
+
+@login_required       
+def eliminarRecoleccion(request, recoleccion_id):
+    recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
+    if request.method == 'POST':
+        recoleccions.delete()
+        return redirect('recoleccion')

@@ -57,5 +57,8 @@ urlpatterns = [
     path('tipoRecoleccion/crear/', views.crearTipoRecoleccion, name='crearTipoRecoleccion'),
     path('recoleccion/crear/', views.crearRecoleccion, name='crearRecoleccion'),
     path('detalleIncentivo/crear/', views.crearDetalleIncentivo, name='crearDetalleIncentivo'),
+    path('recoleccion/<int:recoleccion_id>', views.recoleccionDetail, name='recoleccionDetail'),
+    path('recoleccion/<int:recoleccion_id>/eliminar', views.eliminarRecoleccion, name='eliminarRecoleccion'),
+
     
 ]

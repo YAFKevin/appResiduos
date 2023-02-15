@@ -9,13 +9,15 @@
     {% for recoleccion in recoleccions %}
 
     <li>
-        <h2>{{ recoleccion.observacion }}</h2>
-        <p>{{ recoleccion.Personal_ID }}</p>
-        <p>{{ recoleccion.Maquinaria_ID }}</p>
-        <p>{{ recoleccion.Residuo_ID }}</p>
-        <p>{{ recoleccion.Horario_ID }}</p>
-        <p>{{ recoleccion.Usuario_ID }}</p>
-        <p>{{ recoleccion.TipoRecoleccion_ID }}</p>
+        <a href="{% url 'recoleccionDetail' recoleccion.id %}">
+            <p> <strong>Horario:</strong>  {{ recoleccion.Horario_ID }}</p>
+            <p> <strong>Personal:</strong>  {{ recoleccion.Personal_ID }}</p>
+            <p> <strong>Maquinaria:</strong>  {{ recoleccion.Maquinaria_ID }}</p>
+            <p> <strong>Residuo:</strong>  {{ recoleccion.Residuo_ID }}</p>
+            <p> <strong>Usuario:</strong>  {{ recoleccion.Usuario_ID }}</p>
+            <p> <strong>Tipo de recoleccion:</strong>  {{ recoleccion.TipoRecoleccion_ID }}</p>
+            <p> <strong>Observacion:</strong> {{ recoleccion.observacion }}</p>
+        </a>
     </li>
 
     {% endfor %}

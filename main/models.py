@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class tipoDocumento(models.Model):
-    nombres = models.CharField(max_length= 20, unique=True)
+    nombres = models.CharField(max_length= 30, unique=True)
     def __str__(self):
         return self.nombres
 
@@ -153,6 +153,7 @@ class recoleccion(models.Model):
     #mostrar el el nombre del residuo y la fecha de recoleccion en string
     def __str__(self):
         return self.Residuo_ID.nombre + ' | ' + str(self.Horario_ID.fecha) + ' ' + str(self.Horario_ID.hora)
+    
 
 class detalleIncentivo(models.Model):
     cantidad = models.IntegerField()

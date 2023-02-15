@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<p>{{recoleccion.Horario_ID}} recolectado por: {{recoleccion.TipoRecoleccion_ID}} </p>
+
+{{error}}
+
+
+<form method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button>Actualizar</button>
+
+</form>
+
+<form action="{% url 'eliminarRecoleccion' recoleccion.id %}" method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button>Eliminar</button>
+
+</form>
+
+{% endblock %}
