@@ -524,7 +524,8 @@ def eliminarRecoleccion(request, recoleccion_id):
     if request.method == 'POST':
         recoleccions.delete()
         return redirect('recoleccion')
-    
+
+
 @login_required
 def ciudadanoDetail(request, ciudadano_id):
     if request.method == 'GET':
@@ -540,35 +541,43 @@ def ciudadanoDetail(request, ciudadano_id):
         except ValueError:
             return render(request, 'ciudadanoDetail.html', {'ciudadano': ciudadanos, 'form': form, 'error': 'Error al actualizar datos'})
 
+
 @login_required
 def eliminarCiudadano(request, ciudadano_id):
     ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
     if request.method == 'POST':
         ciudadanos.delete()
         return redirect('ciudadano')
-    
+
+
 @login_required
 def detalleIncentivoDetail(request, detalleIncentivo_id):
     if request.method == 'GET':
-        detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
+        detalleIncentivos = get_object_or_404(
+            detalleIncentivo, pk=detalleIncentivo_id)
         form = detalleIncentivoForm(instance=detalleIncentivos)
         return render(request, 'detalleIncentivoDetail.html', {'detalleIncentivo': detalleIncentivos, 'form': form})
     else:
         try:
-            detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
-            form = detalleIncentivoForm(request.POST, instance=detalleIncentivos)
+            detalleIncentivos = get_object_or_404(
+                detalleIncentivo, pk=detalleIncentivo_id)
+            form = detalleIncentivoForm(
+                request.POST, instance=detalleIncentivos)
             form.save()
             return redirect('detalleIncentivo')
         except ValueError:
             return render(request, 'detalleIncentivoDetail.html', {'detalleIncentivo': detalleIncentivos, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarDetalleIncentivo(request, detalleIncentivo_id):
-    detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
+    detalleIncentivos = get_object_or_404(
+        detalleIncentivo, pk=detalleIncentivo_id)
     if request.method == 'POST':
         detalleIncentivos.delete()
         return redirect('detalleIncentivo')
-    
+
+
 @login_required
 def horarioDetail(request, horario_id):
     if request.method == 'GET':
@@ -583,14 +592,16 @@ def horarioDetail(request, horario_id):
             return redirect('horario')
         except ValueError:
             return render(request, 'horarioDetail.html', {'horario': horarios, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarHorario(request, horario_id):
     horarios = get_object_or_404(horario, pk=horario_id)
     if request.method == 'POST':
         horarios.delete()
         return redirect('horario')
-    
+
+
 @login_required
 def personalDetail(request, personal_id):
     if request.method == 'GET':
@@ -606,13 +617,15 @@ def personalDetail(request, personal_id):
         except ValueError:
             return render(request, 'personalDetail.html', {'personal': personals, 'form': form, 'error': 'Error al actualizar datos'})
 
+
 @login_required
 def eliminarPersonal(request, personal_id):
     personals = get_object_or_404(personal, pk=personal_id)
     if request.method == 'POST':
         personals.delete()
         return redirect('personal')
-    
+
+
 @login_required
 def residuoDetail(request, residuo_id):
     if request.method == 'GET':
@@ -627,14 +640,16 @@ def residuoDetail(request, residuo_id):
             return redirect('residuo')
         except ValueError:
             return render(request, 'residuoDetail.html', {'residuo': residuos, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarResiduo(request, residuo_id):
     residuos = get_object_or_404(residuo, pk=residuo_id)
     if request.method == 'POST':
         residuos.delete()
         return redirect('residuo')
-    
+
+
 @login_required
 def rutaDetail(request, ruta_id):
     if request.method == 'GET':
@@ -649,13 +664,15 @@ def rutaDetail(request, ruta_id):
             return redirect('ruta')
         except ValueError:
             return render(request, 'rutaDetail.html', {'ruta': rutas, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarRuta(request, ruta_id):
     rutas = get_object_or_404(ruta, pk=ruta_id)
     if request.method == 'POST':
         rutas.delete()
         return redirect('ruta')
+
 
 @login_required
 def zonaDetail(request, zona_id):
@@ -671,13 +688,57 @@ def zonaDetail(request, zona_id):
             return redirect('zona')
         except ValueError:
             return render(request, 'zonaDetail.html', {'zona': zonas, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarZona(request, zona_id):
     zonas = get_object_or_404(zona, pk=zona_id)
     if request.method == 'POST':
         zonas.delete()
         return redirect('zona')
+
+
+@login_required
+def tipoDocumentoDetail(request, tipoDocumento_id):
+    if request.method == 'GET':
+        tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
+        form = tipoDocumentoForm(instance=tipoDocumentos)
+        return render(request, 'tipoDocumentoDetail.html', {'tipoDocumento': tipoDocumentos, 'form': form})
+    else:
+        try:
+            tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
+            form = tipoDocumentoForm(request.POST, instance=tipoDocumentos)
+            form.save()
+            return redirect('tipoDocumento')
+        except ValueError:
+            return render(request, 'tipoDocumentoDetail.html', {'tipoDocumento': tipoDocumentos, 'form': form, 'error': 'Error al actualizar datos'})
+
+@login_required
+def eliminarTipoDocumento(request, tipoDocumento_id):
+    tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
+    if request.method == 'POST':
+        tipoDocumentos.delete()
+        return redirect('tipoDocumento')
     
-    
+@login_required
+def maquinariaDetail(request, maquinaria_id):
+    if request.method == 'GET':
+        maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
+        form = maquinariaForm(instance=maquinarias)
+        return render(request, 'maquinariaDetail.html', {'maquinaria': maquinarias, 'form': form})
+    else:
+        try:
+            maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
+            form = maquinariaForm(request.POST, instance=maquinarias)
+            form.save()
+            return redirect('maquinaria')
+        except ValueError:
+            return render(request, 'maquinariaDetail.html', {'maquinaria': maquinarias, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarMaquinaria(request, maquinaria_id):
+    maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
+    if request.method == 'POST':
+        maquinarias.delete()
+        return redirect('maquinaria')
     

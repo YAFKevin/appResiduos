@@ -73,6 +73,11 @@ urlpatterns = [
     path('ruta/<int:ruta_id>/eliminar', views.eliminarRuta, name='eliminarRuta'),
     path('zona/<int:zona_id>', views.zonaDetail, name='zonaDetail'),
     path('zona/<int:zona_id>/eliminar', views.eliminarZona, name='eliminarZona'),
+    path('tipoDocumento/<int:tipoDocumento_id>', views.tipoDocumentoDetail, name='tipoDocumentoDetail'),
+    path('tipoDocumento/<int:tipoDocumento_id>/eliminar', views.eliminarTipoDocumento, name='eliminarTipoDocumento'),
+    path('maquinaria/<int:maquinaria_id>', views.maquinariaDetail, name='maquinariaDetail'),
+    path('maquinaria/<int:maquinaria_id>/eliminar', views.eliminarMaquinaria, name='eliminarMaquinaria'),
+    
 
     
 ]

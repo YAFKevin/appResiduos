@@ -8,75 +8,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión de Residuos Sólidos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="{ % static 'main.css' % }"> -->
 </head>
 
 <body>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark border-5 border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="/">Sistema de Gestión de Residuos Sólidos</a>
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="MenuNavegacion">
+                <ul class="navbar-nav ms-3">
+
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Inicio</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Módulo Recolección
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/recoleccion">Recolección</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Módulo Horario
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/horario">Horario</a></li>
+                            <li><a class="dropdown-item" href="/ruta">Ruta</a></li>
+                            <li><a class="dropdown-item" href="/zona">Zona</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Módulo Persona
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/ciudadano">Ciudadano</a></li>
+                            <li><a class="dropdown-item" href="/tipoDocumento">Tipo de documento</a></li>                        
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Módulo Logística
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/personal">Personal</a></li>
+                            <li><a class="dropdown-item" href="/residuo">Residuo</a></li>
+                            <li><a class="dropdown-item" href="/detalleIncentivo">Incentivo</a></li>
+                            <li><a class="dropdown-item" href="/maquinaria">Maquinaria</a></li>
+                        </ul>
+                    </li>        
+
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link"> Cerrar sesión</a>
+                    </li>
+
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="/signup" class="nav-link">Registrarse</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/signin" class="nav-link">Identificarse</a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <nav>
         <ul>
-            <li>
-                <a href="/">Inicio</a>
-            </li>
 
-            {% if user.is_authenticated %}
-
-            <li>
-                <a href="/ciudadano">Ciudadano</a>
-            </li>
-
-
-
-            <li>
-                <a href="/horario">Horario</a>
-            </li>
-
-            <li>
-                <a href="/personal">Personal</a>
-            </li>
-
-            <li>
-                <a href="/recoleccion">Recolección</a>
-            </li>
-
-            <li>
-                <a href="/residuo">Residuo</a>
-            </li>
-
-            <li>
-                <a href="/ruta">Ruta</a>
-            </li>
-
-            <li>
-                <a href="/zona">Zona</a>
-            </li>
-
-            <li>
-                <a href="/detalleIncentivo">Incentivo</a>
-            </li>
-
-            <li>
-                <a href="/tipoDocumento">Tipo Documento</a>
-            </li>
-
-            <li>
-                <a href="/maquinaria">Maquinaria</a>
-            </li>
-
-            <li>
-                <a href="/logout">Cerrar sesión</a>
-            </li>
-
-
-            {% else %}
-            <li>
-                <a href="/signup">Registrarse</a>
-            </li>
-            <li>
-                <a href="/signin">Identificarse</a>
-            </li>
-
-            {% endif %}
         </ul>
     </nav>
 

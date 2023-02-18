@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class tipoDocumento(models.Model):
-    nombres = models.CharField(max_length= 30, unique=True)
+    nombre = models.CharField(max_length= 30, unique=True)
     def __str__(self):
-        return self.nombres
+        return self.nombre
 
 class tipoMaquinaria(models.Model):
     nombre = models.CharField(max_length=20, unique=True, null=True)

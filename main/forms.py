@@ -5,7 +5,7 @@ from .models import tipoDocumento, tipoCiudadano, tipoMaquinaria, residuo, tipoI
 class tipoDocumentoForm(ModelForm):
     class Meta:
         model = tipoDocumento
-        fields = ['nombres']
+        fields = ['nombre']
 
 
 class tipoMaquinariaForm(ModelForm):

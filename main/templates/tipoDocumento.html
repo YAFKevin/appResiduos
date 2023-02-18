@@ -9,11 +9,13 @@
     {% for tipoDocumento in tipoDocumentos %}
 
     <li>
-        {{tipoDocumento.nombres}}        
+        <a href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">
+            {{tipoDocumento.nombre}}
+        </a>  
     </li>
 
     {% endfor %}
 
-</ul>
+</ul> 
 
 {% endblock %}

@@ -9,12 +9,14 @@
     {% for maquinaria in maquinarias %}
 
     <li>
-        <h2>{{maquinaria.nombre}}</h2>
-        <p>{{maquinaria.placa}}</p>
-        <p>{{maquinaria.estado}}</p>
-        <p>{{maquinaria.cargaNeta}}</p>
-        <p>{{maquinaria.cargaUtil}}</p>
-        <p>{{maquinaria.idTipoMaqui}}</p>      
+        <a href="{% url 'maquinariaDetail' maquinaria.id %}">
+            <p>{{maquinaria.nombre}}</p>
+            <p>{{maquinaria.idTipoMaqui}}</p>    
+            <p>{{maquinaria.placa}}</p>
+            <p>{{maquinaria.estado}}</p>
+            <p>{{maquinaria.cargaNeta}}</p>
+            <p>{{maquinaria.cargaUtil}}</p>
+        </a> 
     </li>
 
     {% endfor %}
