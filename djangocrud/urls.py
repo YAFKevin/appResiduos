@@ -59,6 +59,20 @@ urlpatterns = [
     path('detalleIncentivo/crear/', views.crearDetalleIncentivo, name='crearDetalleIncentivo'),
     path('recoleccion/<int:recoleccion_id>', views.recoleccionDetail, name='recoleccionDetail'),
     path('recoleccion/<int:recoleccion_id>/eliminar', views.eliminarRecoleccion, name='eliminarRecoleccion'),
+    path('ciudadano/<int:ciudadano_id>', views.ciudadanoDetail, name='ciudadanoDetail'),
+    path('ciudadano/<int:ciudadano_id>/eliminar', views.eliminarCiudadano, name='eliminarCiudadano'),
+    path('detalleIncentivo/<int:detalleIncentivo_id>', views.detalleIncentivoDetail, name='detalleIncentivoDetail'),
+    path('detalleIncentivo/<int:detalleIncentivo_id>/eliminar', views.eliminarDetalleIncentivo, name='eliminarDetalleIncentivo'),
+    path('horario/<int:horario_id>', views.horarioDetail, name='horarioDetail'),
+    path('horario/<int:horario_id>/eliminar', views.eliminarHorario, name='eliminarHorario'),
+    path('personal/<int:personal_id>', views.personalDetail, name='personalDetail'),
+    path('personal/<int:personal_id>/eliminar', views.eliminarPersonal, name='eliminarPersonal'),
+    path('residuo/<int:residuo_id>', views.residuoDetail, name='residuoDetail'),
+    path('residuo/<int:residuo_id>/eliminar', views.eliminarResiduo, name='eliminarResiduo'),
+    path('ruta/<int:ruta_id>', views.rutaDetail, name='rutaDetail'),
+    path('ruta/<int:ruta_id>/eliminar', views.eliminarRuta, name='eliminarRuta'),
+    path('zona/<int:zona_id>', views.zonaDetail, name='zonaDetail'),
+    path('zona/<int:zona_id>/eliminar', views.eliminarZona, name='eliminarZona'),
 
     
 ]

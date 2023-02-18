@@ -9,10 +9,12 @@
     {% for ruta in rutas %}
 
     <li>
-        <h2>{{ruta.nombre}}</h2>
-        <p>{{ruta.lugarInicio}}</p>
-        <p>{{ruta.lugarFin}}</p>
-        <p>{{ruta.idZona}}</p>    
+        <a href="{% url 'rutaDetail' ruta.id %}">
+            <p>{{ruta.nombre}}</p>
+            <p>{{ruta.lugarInicio}}</p>
+            <p>{{ruta.lugarFin}}</p>
+            <p>{{ruta.idZona}}</p> 
+        </a>   
     </li>
 
     {% endfor %}

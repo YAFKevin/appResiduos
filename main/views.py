@@ -7,6 +7,7 @@ from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, res
 from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     return render(request, 'home.html')
 
@@ -42,11 +43,13 @@ def listarTipoDocumento(request):
 
     return render(request, 'tipoDocumento.html', {'tipoDocumentos': tipoDocumentos})
 
+
 @login_required
 def listarTipoMaquinaria(request):
     tipoMaquinarias = tipoMaquinaria.objects.all()
 
     return render(request, 'tipoMaquinaria.html', {'tipoMaquinarias': tipoMaquinarias})
+
 
 @login_required
 def listarResiduo(request):
@@ -54,11 +57,13 @@ def listarResiduo(request):
 
     return render(request, 'residuo.html', {'residuos': residuos})
 
+
 @login_required
 def listarTipoIncentivo(request):
     tipoIncentivos = tipoIncentivo.objects.all()
 
     return render(request, 'tipoIncentivo.html', {'tipoIncentivos': tipoIncentivos})
+
 
 @login_required
 def listarTipoPersonal(request):
@@ -66,11 +71,13 @@ def listarTipoPersonal(request):
 
     return render(request, 'tipoPersonal.html', {'tipoPersonals': tipoPersonals})
 
+
 @login_required
 def listarZona(request):
     zonas = zona.objects.all()
 
     return render(request, 'zona.html', {'zonas': zonas})
+
 
 @login_required
 def listarPersonal(request):
@@ -78,11 +85,13 @@ def listarPersonal(request):
 
     return render(request, 'personal.html', {'personals': personals})
 
+
 @login_required
 def listarTipoCiudadano(request):
     tipoCiudadanos = tipoCiudadano.objects.all()
 
     return render(request, 'tipoCiudadano.html', {'tipoCiudadanos': tipoCiudadanos})
+
 
 @login_required
 def listarCiudadano(request):
@@ -90,11 +99,13 @@ def listarCiudadano(request):
 
     return render(request, 'ciudadano.html', {'ciudadanos': ciudadanos})
 
+
 @login_required
 def listarMaquinaria(request):
     maquinarias = maquinaria.objects.all()
 
     return render(request, 'maquinaria.html', {'maquinarias': maquinarias})
+
 
 @login_required
 def listarRuta(request):
@@ -102,10 +113,12 @@ def listarRuta(request):
 
     return render(request, 'ruta.html', {'rutas': rutas})
 
+
 def listarHorario(request):
     horarios = horario.objects.all()
 
     return render(request, 'horario.html', {'horarios': horarios})
+
 
 @login_required
 def listarTipoRecoleccion(request):
@@ -113,11 +126,13 @@ def listarTipoRecoleccion(request):
 
     return render(request, 'tipoRecoleccion.html', {'tipoRecoleccions': tipoRecoleccions})
 
+
 @login_required
 def listarRecoleccion(request):
     recoleccions = recoleccion.objects.all()
 
     return render(request, 'recoleccion.html', {'recoleccions': recoleccions})
+
 
 @login_required
 def listarDetalleIncentivo(request):
@@ -153,6 +168,7 @@ def signin(request):
             'form': AuthenticationForm
         })
 
+
 @login_required
 def crearTipoDocumento(request):
 
@@ -177,6 +193,7 @@ def crearTipoDocumento(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearTipoMaquinaria(request):
 
@@ -197,6 +214,7 @@ def crearTipoMaquinaria(request):
                 'form': tipoMaquinariaForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearResiduo(request):
@@ -219,6 +237,7 @@ def crearResiduo(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearTipoIncentivo(request):
 
@@ -239,6 +258,7 @@ def crearTipoIncentivo(request):
                 'form': tipoIncentivoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearTipoPersonal(request):
@@ -261,6 +281,7 @@ def crearTipoPersonal(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearZona(request):
 
@@ -281,6 +302,7 @@ def crearZona(request):
                 'form': zonaForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearPersonal(request):
@@ -303,6 +325,7 @@ def crearPersonal(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearTipoCiudadano(request):
 
@@ -323,6 +346,7 @@ def crearTipoCiudadano(request):
                 'form': tipoCiudadanoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearCiudadano(request):
@@ -345,6 +369,7 @@ def crearCiudadano(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearMaquinaria(request):
 
@@ -365,6 +390,7 @@ def crearMaquinaria(request):
                 'form': maquinariaForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearRuta(request):
@@ -387,6 +413,7 @@ def crearRuta(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearHorario(request):
 
@@ -407,6 +434,7 @@ def crearHorario(request):
                 'form': horarioForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearTipoRecoleccion(request):
@@ -429,6 +457,7 @@ def crearTipoRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def crearRecoleccion(request):
 
@@ -449,6 +478,7 @@ def crearRecoleccion(request):
                 'form': recoleccionForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
+
 
 @login_required
 def crearDetalleIncentivo(request):
@@ -471,6 +501,7 @@ def crearDetalleIncentivo(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 @login_required
 def recoleccionDetail(request, recoleccion_id):
     if request.method == 'GET':
@@ -487,9 +518,166 @@ def recoleccionDetail(request, recoleccion_id):
             return render(request, 'recoleccionDetail.html', {'recoleccion': recoleccions, 'form': form, 'error': 'Error al actualizar datos'})
 
 
-@login_required       
+@login_required
 def eliminarRecoleccion(request, recoleccion_id):
     recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
     if request.method == 'POST':
         recoleccions.delete()
         return redirect('recoleccion')
+    
+@login_required
+def ciudadanoDetail(request, ciudadano_id):
+    if request.method == 'GET':
+        ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
+        form = ciudadanoForm(instance=ciudadanos)
+        return render(request, 'ciudadanoDetail.html', {'ciudadano': ciudadanos, 'form': form})
+    else:
+        try:
+            ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
+            form = ciudadanoForm(request.POST, instance=ciudadanos)
+            form.save()
+            return redirect('ciudadano')
+        except ValueError:
+            return render(request, 'ciudadanoDetail.html', {'ciudadano': ciudadanos, 'form': form, 'error': 'Error al actualizar datos'})
+
+@login_required
+def eliminarCiudadano(request, ciudadano_id):
+    ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
+    if request.method == 'POST':
+        ciudadanos.delete()
+        return redirect('ciudadano')
+    
+@login_required
+def detalleIncentivoDetail(request, detalleIncentivo_id):
+    if request.method == 'GET':
+        detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
+        form = detalleIncentivoForm(instance=detalleIncentivos)
+        return render(request, 'detalleIncentivoDetail.html', {'detalleIncentivo': detalleIncentivos, 'form': form})
+    else:
+        try:
+            detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
+            form = detalleIncentivoForm(request.POST, instance=detalleIncentivos)
+            form.save()
+            return redirect('detalleIncentivo')
+        except ValueError:
+            return render(request, 'detalleIncentivoDetail.html', {'detalleIncentivo': detalleIncentivos, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarDetalleIncentivo(request, detalleIncentivo_id):
+    detalleIncentivos = get_object_or_404(detalleIncentivo, pk=detalleIncentivo_id)
+    if request.method == 'POST':
+        detalleIncentivos.delete()
+        return redirect('detalleIncentivo')
+    
+@login_required
+def horarioDetail(request, horario_id):
+    if request.method == 'GET':
+        horarios = get_object_or_404(horario, pk=horario_id)
+        form = horarioForm(instance=horarios)
+        return render(request, 'horarioDetail.html', {'horario': horarios, 'form': form})
+    else:
+        try:
+            horarios = get_object_or_404(horario, pk=horario_id)
+            form = horarioForm(request.POST, instance=horarios)
+            form.save()
+            return redirect('horario')
+        except ValueError:
+            return render(request, 'horarioDetail.html', {'horario': horarios, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarHorario(request, horario_id):
+    horarios = get_object_or_404(horario, pk=horario_id)
+    if request.method == 'POST':
+        horarios.delete()
+        return redirect('horario')
+    
+@login_required
+def personalDetail(request, personal_id):
+    if request.method == 'GET':
+        personals = get_object_or_404(personal, pk=personal_id)
+        form = personalForm(instance=personals)
+        return render(request, 'personalDetail.html', {'personal': personals, 'form': form})
+    else:
+        try:
+            personals = get_object_or_404(personal, pk=personal_id)
+            form = personalForm(request.POST, instance=personals)
+            form.save()
+            return redirect('personal')
+        except ValueError:
+            return render(request, 'personalDetail.html', {'personal': personals, 'form': form, 'error': 'Error al actualizar datos'})
+
+@login_required
+def eliminarPersonal(request, personal_id):
+    personals = get_object_or_404(personal, pk=personal_id)
+    if request.method == 'POST':
+        personals.delete()
+        return redirect('personal')
+    
+@login_required
+def residuoDetail(request, residuo_id):
+    if request.method == 'GET':
+        residuos = get_object_or_404(residuo, pk=residuo_id)
+        form = residuoForm(instance=residuos)
+        return render(request, 'residuoDetail.html', {'residuo': residuos, 'form': form})
+    else:
+        try:
+            residuos = get_object_or_404(residuo, pk=residuo_id)
+            form = residuoForm(request.POST, instance=residuos)
+            form.save()
+            return redirect('residuo')
+        except ValueError:
+            return render(request, 'residuoDetail.html', {'residuo': residuos, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarResiduo(request, residuo_id):
+    residuos = get_object_or_404(residuo, pk=residuo_id)
+    if request.method == 'POST':
+        residuos.delete()
+        return redirect('residuo')
+    
+@login_required
+def rutaDetail(request, ruta_id):
+    if request.method == 'GET':
+        rutas = get_object_or_404(ruta, pk=ruta_id)
+        form = rutaForm(instance=rutas)
+        return render(request, 'rutaDetail.html', {'ruta': rutas, 'form': form})
+    else:
+        try:
+            rutas = get_object_or_404(ruta, pk=ruta_id)
+            form = rutaForm(request.POST, instance=rutas)
+            form.save()
+            return redirect('ruta')
+        except ValueError:
+            return render(request, 'rutaDetail.html', {'ruta': rutas, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarRuta(request, ruta_id):
+    rutas = get_object_or_404(ruta, pk=ruta_id)
+    if request.method == 'POST':
+        rutas.delete()
+        return redirect('ruta')
+
+@login_required
+def zonaDetail(request, zona_id):
+    if request.method == 'GET':
+        zonas = get_object_or_404(zona, pk=zona_id)
+        form = zonaForm(instance=zonas)
+        return render(request, 'zonaDetail.html', {'zona': zonas, 'form': form})
+    else:
+        try:
+            zonas = get_object_or_404(zona, pk=zona_id)
+            form = zonaForm(request.POST, instance=zonas)
+            form.save()
+            return redirect('zona')
+        except ValueError:
+            return render(request, 'zonaDetail.html', {'zona': zonas, 'form': form, 'error': 'Error al actualizar datos'})
+        
+@login_required
+def eliminarZona(request, zona_id):
+    zonas = get_object_or_404(zona, pk=zona_id)
+    if request.method == 'POST':
+        zonas.delete()
+        return redirect('zona')
+    
+    
+    

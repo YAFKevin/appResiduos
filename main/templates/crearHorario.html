@@ -10,9 +10,9 @@
 
     {% csrf_token %}
 
-    {{form}}
+    {{form.as_p}}
 
-    <button>
+    <button> 
         Guardar
     </button>
 

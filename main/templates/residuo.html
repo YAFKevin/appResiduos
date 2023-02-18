@@ -9,11 +9,15 @@
     {% for residuo in residuos %}
 
     <li>
-        <h2>{{residuo.nombre}}</h2>
-        <p>{{residuo.descripcion}}</p> 
-        <p>Estado: {{residuo.estado}}</p>         
-    </li>
+        <a href="{% url 'residuoDetail' residuo.id %}">
 
+            <p>{{residuo.nombre}}</p>
+            <p>{{residuo.descripcion}}</p> 
+            <p>Estado: {{residuo.estado}}</p> 
+
+        </a>        
+    </li>
+ 
     {% endfor %}
 
 </ul>

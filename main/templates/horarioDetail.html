@@ -3,7 +3,8 @@
 {% block content %}
 
 
-<p>{{recoleccion.Horario_ID}} recolectado por: {{recoleccion.TipoRecoleccion_ID}} </p>
+<h2>Fecha: {{horario.fecha}}</h2>
+<h3>Hora: {{horario.hora}}</h3>
 
 {{error}}
 
@@ -17,13 +18,13 @@
 
 </form>
 
-<form action="{% url 'eliminarRecoleccion' recoleccion.id %}" method="POST">
+<form action="{% url 'eliminarHorario' horario.id %}" method="POST">
 
     {% csrf_token %}
     <br>
 
     <button>Eliminar</button>
 
-</form>
+</form> 
 
 {% endblock %} 

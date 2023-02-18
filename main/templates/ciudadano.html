@@ -9,15 +9,17 @@
     {% for ciudadano in ciudadanos %}
 
     <li>
-        <h2>{{ciudadano.nombre}} {{ciudadano.apellido}}</h2>
-        <p>{{ciudadano.documento}}</p>
-        <p>{{ciudadano.celular}}</p>
-        <p>{{ciudadano.direccion}}</p>
-        <p>{{ciudadano.estado}}</p>
-        <p>{{ciudadano.idTipoDoc}}</p>
-        <p>{{ciudadano.idTipoCiud}}</p>         
+        <a href="{% url 'ciudadanoDetail' ciudadano.id %}">
+            <p>{{ciudadano.nombre}} {{ciudadano.apellido}}</p>
+            <p>{{ciudadano.documento}}</p>
+            <p>{{ciudadano.celular}}</p>
+            <p>{{ciudadano.direccion}}</p>
+            <p>{{ciudadano.estado}}</p>
+            <p>{{ciudadano.idTipoDoc}}</p>
+            <p>{{ciudadano.idTipoCiud}}</p>
+        </a>         
     </li>
-
+ 
     {% endfor %}
 
 </ul>

@@ -9,8 +9,10 @@
     {% for zona in zonas %}
 
     <li>
-        <h2>{{zona.nombre}}</h2>
-        <p>Estado {{zona.estado}}</p>       
+        <a href="{% url 'zonaDetail' zona.id %}">
+            <p>{{zona.nombre}}</p>
+            <p>Estado {{zona.estado}}</p>  
+        </a>     
     </li>
 
     {% endfor %}

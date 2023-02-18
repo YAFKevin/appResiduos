@@ -9,14 +9,18 @@
     {% for detalleIncentivo in detalleIncentivos %}
 
     <li>
-        <h2>{{detalleIncentivo.cantidad}}</h2>
+        <a href="{% url 'detalleIncentivoDetail' detalleIncentivo.id %}">
+
+        <p>{{detalleIncentivo.cantidad}}</p>
         <p>{{detalleIncentivo.idTipoIncentivo}}</p>
         <p>{{detalleIncentivo.idRecoleccion}}</p>
         <p>{{detalleIncentivo.idCiudadano}}</p>
+
+        </a>
     </li>
 
     {% endfor %}
 
 </ul>
-
+ 
 {% endblock %}

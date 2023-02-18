@@ -3,7 +3,6 @@
 {% block content %}
 
 
-<p>{{recoleccion.Horario_ID}} recolectado por: {{recoleccion.TipoRecoleccion_ID}} </p>
 
 {{error}}
 
@@ -17,13 +16,13 @@
 
 </form>
 
-<form action="{% url 'eliminarRecoleccion' recoleccion.id %}" method="POST">
+<form action="{% url 'eliminarRuta' ruta.id %}" method="POST">
 
     {% csrf_token %}
     <br>
 
     <button>Eliminar</button>
 
-</form>
+</form> 
 
 {% endblock %} 
