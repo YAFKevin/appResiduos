@@ -12,6 +12,34 @@ def home(request):
     return render(request, 'home.html')
 
 
+def signout(request):
+    logout(request)
+    return redirect('home')
+
+
+def signin(request):
+    if request.method == 'GET':
+        return render(request, 'signin.html', {
+            'form': AuthenticationForm
+        })
+    else:
+        user = authenticate(
+            request, username=request.POST['username'], password=request.POST['password'])
+
+        if user is None:
+            return render(request, 'signin.html', {
+                'form': AuthenticationForm,
+                'error': 'Nombre de usuario o contraseña incorrectos'
+            })
+        else:
+            login(request, user)
+            return redirect('home')
+
+        return render(request, 'signin.html', {
+            'form': AuthenticationForm
+        })
+
+
 def signup(request):
 
     if request.method == 'GET':
@@ -139,34 +167,6 @@ def listarDetalleIncentivo(request):
     detalleIncentivos = detalleIncentivo.objects.all()
 
     return render(request, 'detalleIncentivo.html', {'detalleIncentivos': detalleIncentivos})
-
-
-def signout(request):
-    logout(request)
-    return redirect('home')
-
-
-def signin(request):
-    if request.method == 'GET':
-        return render(request, 'signin.html', {
-            'form': AuthenticationForm
-        })
-    else:
-        user = authenticate(
-            request, username=request.POST['username'], password=request.POST['password'])
-
-        if user is None:
-            return render(request, 'signin.html', {
-                'form': AuthenticationForm,
-                'error': 'Nombre de usuario o contraseña incorrectos'
-            })
-        else:
-            login(request, user)
-            return redirect('home')
-
-        return render(request, 'signin.html', {
-            'form': AuthenticationForm
-        })
 
 
 @login_required
@@ -706,12 +706,14 @@ def tipoDocumentoDetail(request, tipoDocumento_id):
         return render(request, 'tipoDocumentoDetail.html', {'tipoDocumento': tipoDocumentos, 'form': form})
     else:
         try:
-            tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
+            tipoDocumentos = get_object_or_404(
+                tipoDocumento, pk=tipoDocumento_id)
             form = tipoDocumentoForm(request.POST, instance=tipoDocumentos)
             form.save()
             return redirect('tipoDocumento')
         except ValueError:
             return render(request, 'tipoDocumentoDetail.html', {'tipoDocumento': tipoDocumentos, 'form': form, 'error': 'Error al actualizar datos'})
+
 
 @login_required
 def eliminarTipoDocumento(request, tipoDocumento_id):
@@ -719,7 +721,8 @@ def eliminarTipoDocumento(request, tipoDocumento_id):
     if request.method == 'POST':
         tipoDocumentos.delete()
         return redirect('tipoDocumento')
-    
+
+
 @login_required
 def maquinariaDetail(request, maquinaria_id):
     if request.method == 'GET':
@@ -734,11 +737,11 @@ def maquinariaDetail(request, maquinaria_id):
             return redirect('maquinaria')
         except ValueError:
             return render(request, 'maquinariaDetail.html', {'maquinaria': maquinarias, 'form': form, 'error': 'Error al actualizar datos'})
-        
+
+
 @login_required
 def eliminarMaquinaria(request, maquinaria_id):
     maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
     if request.method == 'POST':
         maquinarias.delete()
         return redirect('maquinaria')
-    

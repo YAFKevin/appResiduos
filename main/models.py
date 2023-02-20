@@ -139,6 +139,12 @@ class tipoRecoleccion(models.Model):
     def __str__(self):
         return self.nombre  
 
+class medidaRecoleccion(models.Model):
+    nombre = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.nombre
+
 
 class recoleccion(models.Model):
     observacion = models.CharField(max_length=200, blank=True)
@@ -148,6 +154,14 @@ class recoleccion(models.Model):
     Horario_ID = models.ForeignKey(horario, on_delete=models.CASCADE)
     Usuario_ID = models.ForeignKey(User, on_delete=models.CASCADE)
     TipoRecoleccion_ID = models.ForeignKey(tipoRecoleccion, on_delete=models.CASCADE, null = True)
+    #ingresar peso de recoleccion
+    peso = models.FloatField(null = True)
+    #ingresar medida de recoleccion
+    medida = models.ForeignKey(medidaRecoleccion, on_delete=models.CASCADE, null = True)
+
+
+
+
 
     #mostrar el el nombre del residuo y la fecha de recoleccion en string
     def __str__(self):

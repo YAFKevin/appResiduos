@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import tipoDocumento, tipoCiudadano, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo
+from .models import tipoDocumento, tipoCiudadano, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion
 
 
 class tipoDocumentoForm(ModelForm):
@@ -81,7 +81,7 @@ class tipoRecoleccionForm(ModelForm):
 class recoleccionForm(ModelForm):
     class Meta:
         model = recoleccion
-        fields = ['observacion', 'Personal_ID', 'Maquinaria_ID', 'Residuo_ID', 'Horario_ID', 'Usuario_ID', 'TipoRecoleccion_ID']
+        fields = ['observacion', 'Personal_ID', 'Maquinaria_ID', 'Residuo_ID', 'Horario_ID', 'Usuario_ID', 'TipoRecoleccion_ID', 'medida']
     
 class detalleIncentivoForm(ModelForm):
     class Meta:
