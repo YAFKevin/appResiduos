@@ -1,31 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de personal</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for personal in personals %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de personal</h1>
+            <ul class="list-group mt-4">
+                {% for personal in personals %}
 
-    <li>
-        <a href="{% url 'personalDetail' personal.id %}">
-
-            <p>{{personal.nombre}} {{personal.apellido}}</p>
-            <p>{{personal.documento}}</p>
-            <p>{{personal.fechaNacimiento}}</p>
-            <p>{{personal.correo}}</p>
-            <p>{{personal.celular}}</p>
-            <p>{{personal.direccion}}</p>
-            <p>Estado: {{personal.estado}}</p>
-            <p>{{personal.idTipoDoc}}</p>
-            <p>{{personal.idTipoPersonal}}</p>
-
-        </a>
-    </li>
-
-    {% endfor %}
-
-</ul> 
+                <a class="list-group-item" href="{% url 'personalDetail' personal.id %}">
+                    <p><strong>Nombre: </strong>{{personal.nombre}} {{personal.apellido}}</p>
+                    <p><strong>Tipo de documento: </strong>{{personal.idTipoDoc}}</p>
+                    <p><strong>Nro. de documento:</strong>{{personal.documento}}</p>
+                    <p><strong>Fecha de nacimiento: </strong>{{personal.fechaNacimiento}}</p>
+                    <p><strong>Correo: </strong>{{personal.correo}}</p>
+                    <p><strong>Celular: </strong>{{personal.celular}}</p>
+                    <p><strong>Dirección: </strong>{{personal.direccion}}</p>
+                    <p><strong>Estado: </strong>{{personal.estado}}</p>
+                    <p><strong>Tipo de personal: </strong>{{personal.idTipoPersonal}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

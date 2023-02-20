@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Tipo de Documento</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for tipoDocumento in tipoDocumentos %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de Tipo de Documento</h1>
+            <ul class="list-group mt-4">
+                {% for tipoDocumento in tipoDocumentos %}
 
-    <li>
-        <a href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">
-            {{tipoDocumento.nombre}}
-        </a>  
-    </li>
+                <a class="list-group-item" href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">
+                    <p><strong>Nombre: </strong>{{tipoDocumento.nombre}}</p>
+                </a>
+                {% endfor %}
 
-    {% endfor %}
+            </ul>
 
-</ul> 
+        </div>
+
+    </div>
+</main>
+
 
 {% endblock %}

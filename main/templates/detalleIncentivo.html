@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de detalle de incentivos</h1>
+
+<main class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de detalle de incentivos</h1>
+            <ul class="list-group mt-4">
+                {% for detalleIncentivo in detalleIncentivos %}
+
+
+                <a class="list-group-item" href="{% url 'detalleIncentivoDetail' detalleIncentivo.id %}">                    
+                    <p><strong>Tipo de incentivo: </strong>{{detalleIncentivo.idTipoIncentivo}}</p>
+                    <p><strong>Cantidad: </strong>{{detalleIncentivo.cantidad}}</p>
+                    <p><strong>Recolección: </strong>{{detalleIncentivo.idRecoleccion}}</p>
+                    <p><strong>Ciudadano asignado: </strong>{{detalleIncentivo.idCiudadano}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
 
 
-<ul>
-    {% for detalleIncentivo in detalleIncentivos %}
 
-    <li>
-        <a href="{% url 'detalleIncentivoDetail' detalleIncentivo.id %}">
-
-        <p>{{detalleIncentivo.cantidad}}</p>
-        <p>{{detalleIncentivo.idTipoIncentivo}}</p>
-        <p>{{detalleIncentivo.idRecoleccion}}</p>
-        <p>{{detalleIncentivo.idCiudadano}}</p>
-
-        </a>
-    </li>
-
-    {% endfor %}
-
-</ul>
- 
 {% endblock %}

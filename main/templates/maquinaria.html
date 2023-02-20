@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de maquinaria</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for maquinaria in maquinarias %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de maquinaria</h1>
+            <ul class="list-group mt-4">
+                {% for maquinaria in maquinarias %}
 
-    <li>
-        <a href="{% url 'maquinariaDetail' maquinaria.id %}">
-            <p>{{maquinaria.nombre}}</p>
-            <p>{{maquinaria.idTipoMaqui}}</p>    
-            <p>{{maquinaria.placa}}</p>
-            <p>{{maquinaria.estado}}</p>
-            <p>{{maquinaria.cargaNeta}}</p>
-            <p>{{maquinaria.cargaUtil}}</p>
-        </a> 
-    </li>
-
-    {% endfor %}
-
-</ul>
+                <a class="list-group-item" href="{% url 'maquinariaDetail' maquinaria.id %}">
+                    <p><strong>Nombre: </strong>{{maquinaria.nombre}}</p>
+                    <p><strong>Tipo de maquinaria: </strong>{{maquinaria.idTipoMaqui}}</p>
+                    <p><strong>Placa: </strong>{{maquinaria.placa}}</p>
+                    <p><strong>Carga neta: </strong>{{maquinaria.cargaNeta}}</p>
+                    <p><strong>Carga útil: </strong>{{maquinaria.cargaUtil}}</p>
+                    <p><strong>Estado: </strong>{{maquinaria.estado}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

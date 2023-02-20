@@ -1,24 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de rutas</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de rutas</h1>
+            <ul class="list-group mt-4">
+                {% for ruta in rutas %}
+
+                <a class="list-group-item" href="{% url 'rutaDetail' ruta.id %}">
+                    <p><strong>Nombre: </strong> {{ruta.nombre}}</p>
+                    <p><strong>Lugar de inicio: </strong>{{ruta.lugarInicio}}</p>
+                    <p><strong>Lugar de fin: </strong> {{ruta.lugarFin}}</p>
+                    <p><strong>Zona: </strong>{{ruta.idZona}}</p>
+                </a>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+</main>
 
 <ul>
-    {% for ruta in rutas %}
-
-    <li>
-        <a href="{% url 'rutaDetail' ruta.id %}">
-            <p>{{ruta.nombre}}</p>
-            <p>{{ruta.lugarInicio}}</p>
-            <p>{{ruta.lugarFin}}</p>
-            <p>{{ruta.idZona}}</p> 
-        </a>   
-    </li>
-
-    {% endfor %}
-
-</ul>
-
-{% endblock %}
+    {% endblock %}

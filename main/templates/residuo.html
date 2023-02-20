@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de residuos</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for residuo in residuos %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de residuos</h1>
+            <ul class="list-group mt-4">
+                {% for residuo in residuos %}
 
-    <li>
-        <a href="{% url 'residuoDetail' residuo.id %}">
+                <a class="list-group-item" href="{% url 'residuoDetail' residuo.id %}">
+                    <p><strong>Nombre: </strong>{{residuo.nombre}}</p>
+                    <p><strong>Descripción: </strong>{{residuo.descripcion}}</p>
+                    <p><strong>Estado: </strong> {{residuo.estado}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
-            <p>{{residuo.nombre}}</p>
-            <p>{{residuo.descripcion}}</p> 
-            <p>Estado: {{residuo.estado}}</p> 
-
-        </a>        
-    </li>
- 
-    {% endfor %}
-
-</ul>
 
 {% endblock %}

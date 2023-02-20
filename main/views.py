@@ -162,7 +162,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('tipoDocumento')
+            return redirect('home')
 
         return render(request, 'signin.html', {
             'form': AuthenticationForm

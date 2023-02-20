@@ -1,22 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de zonas</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for zona in zonas %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de zonas</h1>
+            <ul class="list-group mt-4">
+                {% for zona in zonas %}
 
-    <li>
-        <a href="{% url 'zonaDetail' zona.id %}">
-            <p>{{zona.nombre}}</p>
-            <p>Estado {{zona.estado}}</p>  
-        </a>     
-    </li>
+                <a class="list-group-item" href="{% url 'zonaDetail' zona.id %}">
+                    <p><strong>Zona: </strong>{{zona.nombre}}</p>
+                    <p><strong>Estado: </strong> {{zona.estado}}</p>
+                </a>
+                {% endfor %}
 
-    {% endfor %}
+            </ul>
 
-</ul>
+        </div>
+
+    </div>
+</main>
+
 
 {% endblock %}

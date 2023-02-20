@@ -1,15 +1,45 @@
-
 {% extends 'base.html' %}
 
 
 {% block content %}
-<h1>Home</h1>
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius eum culpa aspernatur, debitis doloribus quae quidem, fugiat deserunt veniam temporibus quo vel minima ea repellendus porro voluptatum quia nisi ut.
-Earum sapiente necessitatibus reprehenderit, qui consequatur possimus ab tempore sed pariatur aut accusantium dolores eveniet voluptate. Provident ipsam expedita voluptates unde accusamus ducimus, nesciunt dignissimos labore assumenda, sed similique fugit!
-Ad optio accusantium, pariatur esse quasi culpa reprehenderit sit dolore ab? Nulla illo corrupti assumenda odit minima rem maxime praesentium explicabo similique! Provident temporibus architecto voluptas maxime, quasi vero distinctio?
-Sapiente ad aperiam libero corrupti, dolorem commodi mollitia at labore. Assumenda dignissimos earum in itaque unde quis tenetur vero, est soluta corporis nesciunt aliquam deleniti sapiente quod? Unde, rerum reiciendis?
-Quam repudiandae, optio praesentium pariatur similique dolorum maiores fugiat consequuntur iste? Numquam eum voluptatem alias dolores libero. Atque nihil maiores unde sapiente vitae magni assumenda illum odio? Ducimus, est architecto.</p>
 
+<main class="container py-5">
+    <section class="card card-body">
+
+        <h1 class="display-3 text-center">Sistema para la Gestión de Residuos Sólidos</h1>
+        <br>
+
+        <p>El sistema de gestión de residuos sólidos que hemos desarrollado para la municipalidad de Chiclayo en
+            Lambayeque, Perú, brinda información detallada sobre la recolección de residuos, incluyendo horarios, tipos
+            de residuos, maquinaria utilizada y zonas. Esta herramienta permite a la municipalidad coordinar y
+            planificar de manera efectiva la gestión de los residuos, lo que se traduce en una mejora de la calidad de
+            vida de los habitantes de la ciudad. Además, el sistema también contribuye a la protección del medio
+            ambiente al promover una gestión adecuada de los residuos sólidos, implementando programas de reciclaje y
+            compostaje</p>
+
+            <div class="text-center">
+
+                {% if user.is_authenticated %}
+
+                <a class="btn btn-primary" href="/recoleccion">
+                    Ir al listado de recolección
+                </a>
+
+                {% else %}
+
+                <a class="btn btn-primary" href="/signin">
+                    Iniciar Sesión
+                </a>  
+                {% endif %}              
+
+            </div>
+
+
+ 
+    </section>
+
+
+</main>
 
 {% endblock %}

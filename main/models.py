@@ -141,7 +141,6 @@ class tipoRecoleccion(models.Model):
 
 
 class recoleccion(models.Model):
-    #agregar el campo de observacion con un maximo de 200 caracteres y que sea nulo
     observacion = models.CharField(max_length=200, blank=True)
     Personal_ID = models.ForeignKey(personal, on_delete=models.CASCADE)
     Maquinaria_ID = models.ForeignKey(maquinaria, on_delete=models.CASCADE)
