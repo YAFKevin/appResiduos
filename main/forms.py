@@ -1,96 +1,110 @@
-from django.forms import ModelForm
+from django import forms
 from .models import tipoDocumento, tipoCiudadano, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion
 
 
-class tipoDocumentoForm(ModelForm):
+class tipoDocumentoForm(forms.ModelForm):
     class Meta:
         model = tipoDocumento
         fields = ['nombre']
 
 
-class tipoMaquinariaForm(ModelForm):
+class tipoMaquinariaForm(forms.ModelForm):
 
     class Meta:
         model = tipoMaquinaria
         fields = ['nombre']
 
 
-class residuoForm(ModelForm):
+class residuoForm(forms.ModelForm):
     class Meta:
         model = residuo
         fields = ['nombre', 'descripcion', 'estado']
 
 
-class tipoIncentivoForm(ModelForm):
+class tipoIncentivoForm(forms.ModelForm):
     class Meta:
         model = tipoIncentivo
         fields = ['nombre', 'descripcion']
 
 
-class tipoPersonalForm(ModelForm):
+class tipoPersonalForm(forms.ModelForm):
     class Meta:
         model = tipoPersonal
         fields = ['nombre', 'descripcion']
 
 
-class zonaForm(ModelForm):
+class zonaForm(forms.ModelForm):
     class Meta:
         model = zona
         fields = ['nombre', 'estado']
 
 
-class personalForm(ModelForm):
+class personalForm(forms.ModelForm):
     class Meta:
         model = personal
         fields = ['nombre', 'apellido', 'documento', 'fechaNacimiento', 'correo',
                   'celular', 'direccion', 'estado', 'idTipoDoc', 'idTipoPersonal']
 
 
-class tipoCiudadanoForm(ModelForm):
+class tipoCiudadanoForm(forms.ModelForm):
     class Meta:
         model = tipoCiudadano
         fields = ['nombre', 'descripcion']
 
 
-class ciudadanoForm(ModelForm):
+class ciudadanoForm(forms.ModelForm):
     class Meta:
         model = ciudadano
         fields = ['nombre', 'apellido', 'documento', 'celular',
                   'direccion', 'estado', 'idTipoDoc', 'idTipoCiud']
         
-class maquinariaForm(ModelForm):
+class maquinariaForm(forms.ModelForm):
     class Meta:
         model = maquinaria
         fields = ['nombre', 'placa', 'estado', 'cargaNeta', 'cargaUtil', 'idTipoMaqui']
 
-class rutaForm(ModelForm):
+class rutaForm(forms.ModelForm):
     class Meta:
         model = ruta
         fields = ['nombre', 'lugarInicio', 'lugarFin', 'idZona']
 
-class horarioForm(ModelForm):
+class horarioForm(forms.ModelForm):
     class Meta:
         model = horario
         fields = ['fecha', 'hora', 'estado', 'idRuta']
 
-class tipoRecoleccionForm(ModelForm):
+class tipoRecoleccionForm(forms.ModelForm):
     class Meta:
         model = tipoRecoleccion
         fields = ['nombre', 'descripcion']
 
-class recoleccionForm(ModelForm):
+class recoleccionForm(forms.ModelForm):
     class Meta:
         model = recoleccion
-        fields = ['observacion', 'Personal_ID', 'Maquinaria_ID', 'Residuo_ID', 'Horario_ID', 'Usuario_ID', 'TipoRecoleccion_ID', 'medida']
+        fields = ['Personal_ID', 'Maquinaria_ID', 'Residuo_ID', 'Horario_ID', 'Usuario_ID', 'TipoRecoleccion_ID', 'peso','medida', 'observacion']
+        widgets = {
+
+            'Personal_ID': forms.TextInput(attrs={'class': 'form-control'}),
+            'Maquinaria_ID': forms.TextInput(attrs={'class': 'form-control'}),
+            'Residuo_ID': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'Horario_ID': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'Usuario_ID': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'TipoRecoleccion_ID': forms.CheckboxInput(attrs={'class': 'form-control'}),
+            # 'peso': forms.TextInput(attrs={'class': 'form-control'}),
+            'medida': forms.Select(attrs={'class': 'form-select'}),
+            'observacion': forms.Textarea(attrs={'class': 'form-control'}),
+
+        }
+       
     
-class detalleIncentivoForm(ModelForm):
+class detalleIncentivoForm(forms.ModelForm):
     class Meta:
         model = detalleIncentivo
         fields = ['cantidad', 'idTipoIncentivo', 'idRecoleccion', 'idCiudadano']
+        
 
 
-
-# class empadronamientoForm(ModelForm):
-#     class Meta:
-#         model = empadronamiento
-#         fields = ['nombre', 'descripcion']
+class medidaRecoleccionForm(forms.ModelForm):
+    class Meta:
+        model = medidaRecoleccion
+        fields = ['nombre']

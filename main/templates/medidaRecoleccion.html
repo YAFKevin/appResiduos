@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de medidas de recolección</h1>
+
+            <ul class="list-group mt-4">
+                {% for medidaRecoleccion in medidaRecoleccions %}
+
+                <a class="list-group-item" href="{% url 'medidaRecoleccionDetail' medidaRecoleccion.id %}">
+                    <p> <strong>Nombre:</strong> {{ medidaRecoleccion.Nombre }}</p>
+
+                </a>
+
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
+
+
+</main>
+
+{% endblock %}

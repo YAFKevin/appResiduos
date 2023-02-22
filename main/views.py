@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm
-from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo
+from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm, medidaRecoleccionForm
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion
 from django.contrib.auth.decorators import login_required
 
 
@@ -167,6 +167,12 @@ def listarDetalleIncentivo(request):
     detalleIncentivos = detalleIncentivo.objects.all()
 
     return render(request, 'detalleIncentivo.html', {'detalleIncentivos': detalleIncentivos})
+
+@login_required
+def listarMedidaRecoleccion(request):
+    medidaRecoleccions = medidaRecoleccion.objects.all()
+
+    return render(request, 'medidaRecoleccion.html', {'medidaRecoleccions': medidaRecoleccions})
 
 
 @login_required
@@ -479,6 +485,28 @@ def crearRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+def crearMedidaRecoleccion(request):
+
+    if request.method == 'GET':
+        return render(request, 'crearMedidaRecoleccion.html', {
+            'form': medidaRecoleccionForm
+        })
+    else:
+        try:
+            form = medidaRecoleccionForm(request.POST)
+            newMedidaRecoleccion = form.save(commit=False)
+            newMedidaRecoleccion.save()
+            return render(request, 'crearMedidaRecoleccion.html', {
+                'form': medidaRecoleccionForm
+            })
+        except ValueError:
+            return render(request, 'crearMedidaRecoleccion.html', {
+                'form': medidaRecoleccionForm,
+                'error': 'Por favor, ingrese un dato válido'
+            })
+
+
+
 
 @login_required
 def crearDetalleIncentivo(request):
@@ -745,3 +773,25 @@ def eliminarMaquinaria(request, maquinaria_id):
     if request.method == 'POST':
         maquinarias.delete()
         return redirect('maquinaria')
+    
+@login_required
+def eliminarMedidaRecolección(request, medidaRecolección_id):
+    medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
+    if request.method == 'POST':
+        medidaRecoleccions.delete()
+        return redirect('medidaRecolección')
+
+@login_required
+def medidaRecoleccionDetail(request, medidaRecolección_id):
+    if request.method == 'GET':
+        medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
+        form = medidaRecoleccionForm(instance=medidaRecoleccions)
+        return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form})
+    else:
+        try:
+            medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
+            form = medidaRecoleccionForm(request.POST, instance=medidaRecoleccions)
+            form.save()
+            return redirect('medidaRecolección')
+        except ValueError:
+            return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})

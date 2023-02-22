@@ -159,10 +159,6 @@ class recoleccion(models.Model):
     #ingresar medida de recoleccion
     medida = models.ForeignKey(medidaRecoleccion, on_delete=models.CASCADE, null = True)
 
-
-
-
-
     #mostrar el el nombre del residuo y la fecha de recoleccion en string
     def __str__(self):
         return self.Residuo_ID.nombre + ' | ' + str(self.Horario_ID.fecha) + ' ' + str(self.Horario_ID.hora)

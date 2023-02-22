@@ -37,6 +37,7 @@ urlpatterns = [
     path('tipoRecoleccion/', views.listarTipoRecoleccion, name='tipoRecoleccion'),
     path('recoleccion/', views.listarRecoleccion, name='recoleccion'),
     path('detalleIncentivo/', views.listarDetalleIncentivo, name='detalleIncentivo'),
+    path('medidaRecoleccion/', views.listarMedidaRecoleccion, name='medidaRecoleccion'),
     
 
     path('logout/', views.signout, name='logout'),
@@ -47,6 +48,7 @@ urlpatterns = [
     path('residuo/crear/', views.crearResiduo, name='crearResiduo'),
     path('tipoIncentivo/crear/', views.crearTipoIncentivo, name='crearTipoIncentivo'),
     path('tipoPersonal/crear/', views.crearTipoPersonal, name='crearTipoPersonal'),
+    path('medidaRecoleccion/crear/', views.crearMedidaRecoleccion, name='crearMedidaRecoleccion'),
     path('zona/crear/', views.crearZona, name='crearZona'),
     # path('empadronamiento/crear/', views.crearEmpadronamiento, name='crearEmpadronamiento'),
     path('personal/crear/', views.crearPersonal, name='crearPersonal'),
@@ -77,7 +79,7 @@ urlpatterns = [
     path('tipoDocumento/<int:tipoDocumento_id>/eliminar', views.eliminarTipoDocumento, name='eliminarTipoDocumento'),
     path('maquinaria/<int:maquinaria_id>', views.maquinariaDetail, name='maquinariaDetail'),
     path('maquinaria/<int:maquinaria_id>/eliminar', views.eliminarMaquinaria, name='eliminarMaquinaria'),
-    
+    path('medidaRecoleccion/<int:medidaRecoleccion_id>', views.medidaRecoleccionDetail, name='medidaRecoleccionDetail'),
 
     
 ]
