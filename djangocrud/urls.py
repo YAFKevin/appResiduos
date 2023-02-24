@@ -81,5 +81,9 @@ urlpatterns = [
     path('maquinaria/<int:maquinaria_id>/eliminar', views.eliminarMaquinaria, name='eliminarMaquinaria'),
     path('medidaRecoleccion/<int:medidaRecoleccion_id>', views.medidaRecoleccionDetail, name='medidaRecoleccionDetail'),
 
+
+    #Buscar
+    path('buscarPersonal/', views.buscarPersonal, name='buscarPersonal'),
+    path('buscarCiudadano/', views.buscarCiudadano, name='buscarCiudadano'),
     
 ]

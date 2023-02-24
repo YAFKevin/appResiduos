@@ -8,19 +8,29 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de personal</h1>
+
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarPersonal' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">DNI: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscPersonal" placeholder="Ingrese DNI del personal" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+
             <ul class="list-group mt-4">
                 {% for personal in personals %}
 
                 <a class="list-group-item" href="{% url 'personalDetail' personal.id %}">
-                    <p><strong>Nombre: </strong>{{personal.nombre}} {{personal.apellido}}</p>
+                    <p><strong>Nombres completos: </strong>{{personal.nombre}} {{personal.apellido}}</p>
                     <p><strong>Tipo de documento: </strong>{{personal.idTipoDoc}}</p>
-                    <p><strong>Nro. de documento:</strong>{{personal.documento}}</p>
+                    <p><strong>Nro. de documento: </strong>{{personal.documento}}</p>
                     <p><strong>Fecha de nacimiento: </strong>{{personal.fechaNacimiento}}</p>
                     <p><strong>Correo: </strong>{{personal.correo}}</p>
                     <p><strong>Celular: </strong>{{personal.celular}}</p>
                     <p><strong>Dirección: </strong>{{personal.direccion}}</p>
-                    <p><strong>Estado: </strong>{{personal.estado}}</p>
                     <p><strong>Tipo de personal: </strong>{{personal.idTipoPersonal}}</p>
+                    <p><strong>Estado: </strong>{{personal.estado}}</p>
                 </a>
                 {% endfor %}
             </ul>

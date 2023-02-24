@@ -795,3 +795,22 @@ def medidaRecoleccionDetail(request, medidaRecolección_id):
             return redirect('medidaRecolección')
         except ValueError:
             return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})
+        
+##crear funcion de buscar personal por documento 
+@login_required
+def buscarPersonal(request):
+    template_name = "personal.html"
+    buscPersonal= request.GET['buscPersonal']
+    personals = personal.objects.filter(documento__icontains=buscPersonal)
+    context = {'personals': personals}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarCiudadano(request):
+    template_name = "ciudadano.html"
+    buscCiudadano= request.GET['buscCiudadano']
+    ciudadanos = ciudadano.objects.filter(documento__icontains=buscCiudadano)
+    context = {'ciudadanos': ciudadanos}
+    print(request)
+    return render(request, template_name, context)

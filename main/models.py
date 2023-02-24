@@ -20,14 +20,6 @@ class residuo(models.Model):
     def __str__(self):
         return self.nombre
 
-# class tipoUsuario(models.Model):
-#     nombre = models.CharField(max_length=30)
-#     descripcion = models.TextField(blank=True)
-#     estado = models.BooleanField()
-
-#     def __str__(self):
-#         return self.nombre
-
 class tipoIncentivo(models.Model):
     nombre = models.CharField(max_length=35)
     descripcion = models.TextField(blank=True)
@@ -49,19 +41,6 @@ class zona(models.Model):
     def __str__(self):
         return self.nombre
 
-# class empadronamiento(models.Model):
-#     nombre = models.CharField(max_length=30)
-#     descripcion = models.TextField(blank=True)
-
-#     def __str__(self):
-#         return self.nombre
-
-# class usuario(models.Model):
-#     nombre_usuario = models.CharField(max_length=30, unique=True)
-#     nombreCompleto = models.CharField(max_length=100)
-#     contraseña = models.CharField(max_length=30)
-#     estado = models.BooleanField()
-#     TipoUsuario_ID = models.ForeignKey(tipoUsuario, on_delete=models.CASCADE)
 
 class personal(models.Model):
     nombre = models.CharField(max_length=50)
