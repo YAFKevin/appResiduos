@@ -72,6 +72,12 @@ class horarioForm(forms.ModelForm):
     class Meta:
         model = horario
         fields = ['fecha', 'hora', 'estado', 'idRuta']
+        widgets = {
+            # "fecha": DatePickerInput(),
+            # 'hora': forms.TimeInput(attrs={'class': 'form-control'}),
+            # 'estado': forms.Select(attrs={'class': 'form-control'}),
+            # 'idRuta': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 class tipoRecoleccionForm(forms.ModelForm):
     class Meta:
@@ -84,13 +90,13 @@ class recoleccionForm(forms.ModelForm):
         fields = ['Personal_ID', 'Maquinaria_ID', 'Residuo_ID', 'Horario_ID', 'Usuario_ID', 'TipoRecoleccion_ID', 'peso','medida', 'observacion']
         widgets = {
 
-            'Personal_ID': forms.TextInput(attrs={'class': 'form-control'}),
-            'Maquinaria_ID': forms.TextInput(attrs={'class': 'form-control'}),
-            'Residuo_ID': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'Horario_ID': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'Usuario_ID': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'TipoRecoleccion_ID': forms.CheckboxInput(attrs={'class': 'form-control'}),
-            # 'peso': forms.TextInput(attrs={'class': 'form-control'}),
+            'Personal_ID': forms.Select(attrs={'class': 'form-select'}),
+            'Maquinaria_ID': forms.Select(attrs={'class': 'form-select'}),
+            'Residuo_ID': forms.Select(attrs={'class': 'form-select'}),
+            'Horario_ID': forms.Select(attrs={'class': 'form-select'}),
+            'Usuario_ID': forms.Select(attrs={'class': 'form-select'}),
+            'TipoRecoleccion_ID': forms.Select(attrs={'class': 'form-select'}),
+            'peso': forms.TextInput(attrs={'class': 'form-control'}),
             'medida': forms.Select(attrs={'class': 'form-select'}),
             'observacion': forms.Textarea(attrs={'class': 'form-control'}),
 

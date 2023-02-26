@@ -1,20 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de tipo de personal</h1>
+<main class="container-fluid">
 
+    <div class="row">
 
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de tipo de personal</h1>
 
-<ul>
-    {% for tipoPersonal in tipoPersonals %}
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarTipoPersonal' %}"
+                    class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscTipoPersonal"
+                        placeholder="Buscar tipo personal" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
 
-    <li>
-        <h2>{{tipoPersonal.nombre}}</h2>
-        <p>{{tipoPersonal.descripcion}}</p>       
-    </li>
+            <ul class="list-group mt-4">
+                {% for tipoPersonal in tipoPersonals %}
 
-    {% endfor %}
+                <a class="list-group-item" href="{% url 'tipoPersonalDetail' tipoPersonal.id %}">
+                    <p> <strong>Nombre: </strong>{{tipoPersonal.nombre}}</p>
+                    <p> <strong>Descripcion: </strong>{{tipoPersonal.descripcion}}</p>
+                </a>
+                {% endfor %}
 
-</ul>
+            </ul>
+
+        </div>
+
+    </div>
+</main>
+
 
 {% endblock %}

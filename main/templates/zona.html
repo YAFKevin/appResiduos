@@ -8,6 +8,17 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de zonas</h1>
+
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarZona' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre de la zona: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscZona"
+                        placeholder="Buscar zona" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+
             <ul class="list-group mt-4">
                 {% for zona in zonas %}
 

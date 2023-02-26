@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{{error}}
+
+
+<form method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button>Actualizar</button>
+
+</form>
+
+<form action="{% url 'eliminarTipoPersonal' tipoPersonal.id %}" method="POST">
+
+    {% csrf_token %}
+    <br>
+
+    <button>Eliminar</button>
+
+</form>
+
+{% endblock %} 

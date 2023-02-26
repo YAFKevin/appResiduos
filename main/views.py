@@ -168,6 +168,7 @@ def listarDetalleIncentivo(request):
 
     return render(request, 'detalleIncentivo.html', {'detalleIncentivos': detalleIncentivos})
 
+
 @login_required
 def listarMedidaRecoleccion(request):
     medidaRecoleccions = medidaRecoleccion.objects.all()
@@ -485,6 +486,7 @@ def crearRecoleccion(request):
                 'error': 'Por favor, ingrese un dato válido'
             })
 
+
 def crearMedidaRecoleccion(request):
 
     if request.method == 'GET':
@@ -504,8 +506,6 @@ def crearMedidaRecoleccion(request):
                 'form': medidaRecoleccionForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
-
-
 
 
 @login_required
@@ -604,6 +604,31 @@ def eliminarDetalleIncentivo(request, detalleIncentivo_id):
     if request.method == 'POST':
         detalleIncentivos.delete()
         return redirect('detalleIncentivo')
+    
+@login_required
+def eliminarTipoCiudadano(request, tipoCiudadano_id):
+    tipoCiudadanos = get_object_or_404(tipoCiudadano, pk=tipoCiudadano_id)
+    if request.method == 'POST':
+        tipoCiudadanos.delete()
+        return redirect('tipoCiudadano')
+
+@login_required
+def tipoCiudadanoDetail(request, tipoCiudadano_id):
+    if request.method == 'GET':
+        tipoCiudadanos = get_object_or_404(
+            tipoCiudadano, pk=tipoCiudadano_id)
+        form = tipoCiudadanoForm(instance=tipoCiudadanos)
+        return render(request, 'tipoCiudadanoDetail.html', {'tipoCiudadano': tipoCiudadanos, 'form': form})
+    else:
+        try:
+            tipoCiudadanos = get_object_or_404(
+                tipoCiudadano, pk=tipoCiudadano_id)
+            form = tipoCiudadanoForm(
+                request.POST, instance=tipoCiudadanos)
+            form.save()
+            return redirect('tipoCiudadano')
+        except ValueError:
+            return render(request, 'tipoCiudadanoDetail.html', {'tipoCiudadano': tipoCiudadanos, 'form': form, 'error': 'Error al actualizar datos'})
 
 
 @login_required
@@ -724,6 +749,28 @@ def eliminarZona(request, zona_id):
     if request.method == 'POST':
         zonas.delete()
         return redirect('zona')
+    
+@login_required
+def eliminarTipoMaquinaria(request, tipoMaquinaria_id):
+    tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+    if request.method == 'POST':
+        tipoMaquinarias.delete()
+        return redirect('tipoMaquinaria')
+
+@login_required
+def tipoMaquinariaDetail(request, tipoMaquinaria_id):
+    if request.method == 'GET':
+        tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+        form = tipoMaquinariaForm(instance=tipoMaquinarias)
+        return render(request, 'tipoMaquinariaDetail.html', {'tipoMaquinaria': tipoMaquinarias, 'form': form})
+    else:
+        try:
+            tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+            form = tipoMaquinariaForm(request.POST, instance=tipoMaquinarias)
+            form.save()
+            return redirect('tipoMaquinaria')
+        except ValueError:
+            return render(request, 'tipoMaquinariaDetail.html', {'tipoMaquinaria': tipoMaquinarias, 'form': form, 'error': 'Error al actualizar datos'})
 
 
 @login_required
@@ -749,7 +796,29 @@ def eliminarTipoDocumento(request, tipoDocumento_id):
     if request.method == 'POST':
         tipoDocumentos.delete()
         return redirect('tipoDocumento')
+    
+@login_required
+def eliminarTipoIncentivo(request, tipoIncentivo_id):
+    tipoIncentivos = get_object_or_404(tipoIncentivo, pk=tipoIncentivo_id)
+    if request.method == 'POST':
+        tipoIncentivos.delete()
+        return redirect('tipoIncentivo')
 
+@login_required
+def tipoIncentivoDetail(request, tipoIncentivo_id):
+    if request.method == 'GET':
+        tipoIncentivos = get_object_or_404(tipoIncentivo, pk=tipoIncentivo_id)
+        form = tipoIncentivoForm(instance=tipoIncentivos)
+        return render(request, 'tipoIncentivoDetail.html', {'tipoIncentivo': tipoIncentivos, 'form': form})
+    else:
+        try:
+            tipoIncentivos = get_object_or_404(
+                tipoIncentivo, pk=tipoIncentivo_id)
+            form = tipoIncentivoForm(request.POST, instance=tipoIncentivos)
+            form.save()
+            return redirect('tipoIncentivo')
+        except ValueError:
+            return render(request, 'tipoIncentivoDetail.html', {'tipoIncentivo': tipoIncentivos, 'form': form, 'error': 'Error al actualizar datos'})
 
 @login_required
 def maquinariaDetail(request, maquinaria_id):
@@ -773,44 +842,147 @@ def eliminarMaquinaria(request, maquinaria_id):
     if request.method == 'POST':
         maquinarias.delete()
         return redirect('maquinaria')
-    
+
+
 @login_required
 def eliminarMedidaRecolección(request, medidaRecolección_id):
-    medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
+    medidaRecoleccions = get_object_or_404(
+        medidaRecoleccion, pk=medidaRecolección_id)
     if request.method == 'POST':
         medidaRecoleccions.delete()
         return redirect('medidaRecolección')
+    
+@login_required
+def eliminarTipoPersonal(request, tipoPersonal_id):
+    tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
+    if request.method == 'POST':
+        tipoPersonals.delete()
+        return redirect('tipoPersonal')
+    
+@login_required
+def tipoPersonalDetail(request, tipoPersonal_id):
+    if request.method == 'GET':
+        tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
+        form = tipoPersonalForm(instance=tipoPersonals)
+        return render(request, 'tipoPersonalDetail.html', {'tipoPersonal': tipoPersonals, 'form': form})
+    else:
+        try:
+            tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
+            form = tipoPersonalForm(request.POST, instance=tipoPersonals)
+            form.save()
+            return redirect('tipoPersonal')
+        except ValueError:
+            return render(request, 'tipoPersonalDetail.html', {'tipoPersonal': tipoPersonals, 'form': form, 'error': 'Error al actualizar datos'})
+
 
 @login_required
 def medidaRecoleccionDetail(request, medidaRecolección_id):
     if request.method == 'GET':
-        medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
+        medidaRecoleccions = get_object_or_404(
+            medidaRecoleccion, pk=medidaRecolección_id)
         form = medidaRecoleccionForm(instance=medidaRecoleccions)
         return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form})
     else:
         try:
-            medidaRecoleccions = get_object_or_404(medidaRecoleccion, pk=medidaRecolección_id)
-            form = medidaRecoleccionForm(request.POST, instance=medidaRecoleccions)
+            medidaRecoleccions = get_object_or_404(
+                medidaRecoleccion, pk=medidaRecolección_id)
+            form = medidaRecoleccionForm(
+                request.POST, instance=medidaRecoleccions)
             form.save()
             return redirect('medidaRecolección')
         except ValueError:
             return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})
-        
-##crear funcion de buscar personal por documento 
+
+# crear funcion de buscar personal por documento
+
+
 @login_required
 def buscarPersonal(request):
     template_name = "personal.html"
-    buscPersonal= request.GET['buscPersonal']
+    buscPersonal = request.GET['buscPersonal']
     personals = personal.objects.filter(documento__icontains=buscPersonal)
     context = {'personals': personals}
     print(request)
     return render(request, template_name, context)
 
+
 @login_required
 def buscarCiudadano(request):
     template_name = "ciudadano.html"
-    buscCiudadano= request.GET['buscCiudadano']
+    buscCiudadano = request.GET['buscCiudadano']
     ciudadanos = ciudadano.objects.filter(documento__icontains=buscCiudadano)
     context = {'ciudadanos': ciudadanos}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarRuta(request):
+    template_name = "ruta.html"
+    buscRuta = request.GET['buscRuta']
+    rutas = ruta.objects.filter(nombre__icontains=buscRuta)
+    context = {'rutas': rutas}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarZona(request):
+    template_name = "zona.html"
+    buscZona = request.GET['buscZona']
+    zonas = zona.objects.filter(nombre__icontains=buscZona)
+    context = {'zonas': zonas}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarResiduo(request):
+    template_name = "residuo.html"
+    buscResiduo = request.GET['buscResiduo']
+    residuos = residuo.objects.filter(nombre__icontains=buscResiduo)
+    context = {'residuos': residuos}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarTipoIncentivo(request):
+    template_name = "tipoIncentivo.html"
+    buscTipoIncentivo = request.GET['buscTipoIncentivo']
+    tipoIncentivos = tipoIncentivo.objects.filter(nombre__icontains=buscTipoIncentivo)
+    context = {'tipoIncentivos': tipoIncentivos}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarMaquinaria(request):
+    template_name = "maquinaria.html"
+    buscMaquinaria = request.GET['buscMaquinaria']
+    maquinarias = maquinaria.objects.filter(nombre__icontains=buscMaquinaria)
+    context = {'maquinarias': maquinarias}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarTipoPersonal(request):
+    template_name = "tipoPersonal.html"
+    buscTipoPersonal = request.GET['buscTipoPersonal']
+    tipoPersonals = tipoPersonal.objects.filter(nombre__icontains=buscTipoPersonal)
+    context = {'tipoPersonals': tipoPersonals}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarTipoCiudadano(request):
+    template_name = "tipoCiudadano.html"
+    buscTipoCiudadano = request.GET['buscTipoCiudadano']
+    tipoCiudadanos = tipoCiudadano.objects.filter(nombre__icontains=buscTipoCiudadano)
+    context = {'tipoCiudadanos': tipoCiudadanos}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def buscarTipoMaquinaria(request):
+    template_name = "tipoMaquinaria.html"
+    buscTipoMaquinaria = request.GET['buscTipoMaquinaria']
+    tipoMaquinarias = tipoMaquinaria.objects.filter(nombre__icontains=buscTipoMaquinaria)
+    context = {'tipoMaquinarias': tipoMaquinarias}
     print(request)
     return render(request, template_name, context)

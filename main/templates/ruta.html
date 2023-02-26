@@ -8,6 +8,23 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de rutas</h1>
+
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarRuta' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre de la ruta: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscRuta" placeholder="Buscar ruta"
+                        aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+
+
+            <div>
+                <a class="btn btn-success" href="/ruta/crear">Crear</a>
+            </div>
+
+
             <ul class="list-group mt-4">
                 {% for ruta in rutas %}
 

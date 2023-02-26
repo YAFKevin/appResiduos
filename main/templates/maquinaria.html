@@ -8,6 +8,18 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de maquinaria</h1>
+
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarMaquinaria' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre de la maquinaria: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscMaquinaria"
+                        placeholder="Buscar maquinaria" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+
+
             <ul class="list-group mt-4">
                 {% for maquinaria in maquinarias %}
 
