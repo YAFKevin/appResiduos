@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main class="container-fluid">
+<main class="">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de ciudadanos</h1>
@@ -21,24 +21,46 @@
                 </form>
             </div>
 
-            <ul class="list-group mt-4">
-                {% for ciudadano in ciudadanos %}
-                <a class="list-group-item" href="{% url 'ciudadanoDetail' ciudadano.id %}">
-                    <p><strong>Nombre: </strong>{{ciudadano.nombre}} {{ciudadano.apellido}}</p>
-                    <p><strong>Tipo de documento: </strong>{{ciudadano.idTipoDoc}}</p>
-                    <p><strong>Nro. de documento: </strong>{{ciudadano.documento}}</p>
-                    <p><strong>Celular: </strong>{{ciudadano.celular}}</p>
-                    <p><strong>Dirección: </strong>{{ciudadano.direccion}}</p>
-                    <p><strong>Estado: </strong>{{ciudadano.estado}}</p>
-                    <p><strong>Tipo de ciudadano: </strong>{{ciudadano.idTipoCiud}}</p>
-                </a>
-                {% endfor %}
-
-            </ul>
-
         </div>
 
     </div>
 </main>
+
+<body>
+    <div class="container mt-4 table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de documento</th>
+                            <th>Nro. de documento</th>
+                            <th>Celular</th>
+                            <th>Dirección</th>
+                            <th>Estado</th>
+                            <th>Tipo de ciudadano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ciudadano in ciudadanos %}
+                        <tr>
+                            <td class="col-md-2"><a
+                                    href="{% url 'ciudadanoDetail' ciudadano.id %}">{{ciudadano.nombre}}
+                                    {{ciudadano.apellido}}</a></td>
+                            <td>{{ciudadano.idTipoDoc}}</td>
+                            <td>{{ciudadano.documento}}</td>
+                            <td>{{ciudadano.celular}}</td>
+                            <td>{{ciudadano.direccion}}</td>
+                            <td>{{ciudadano.estado}}</td>
+                            <td>{{ciudadano.idTipoCiud}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 
 {% endblock %}

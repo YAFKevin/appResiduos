@@ -13,7 +13,7 @@
                 <a class="btn btn-success" href="/recoleccion/crear">Crear</a>
             </div>
 
-            <ul class="list-group mt-4">
+            <!-- <ul class="list-group mt-4">
                 {% for recoleccion in recoleccions %}
 
                 <a class="list-group-item" href="{% url 'recoleccionDetail' recoleccion.id %}">
@@ -36,7 +36,7 @@
 
                 {% endfor %}
 
-            </ul>
+            </ul> -->
         </div>
 
     </div>
@@ -45,5 +45,51 @@
 
 
 </main>
+
+<body>
+
+    <div class="container mt-4 table-responsive">
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover mt-4">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Registrado por</th>
+                            <th>Personal</th>
+                            <th>Maquinaria</th>
+                            <th>Residuo</th>
+                            <th>Peso</th>
+                            <th>Medida</th>
+                            <th>Tipo de recoleccion</th>
+                            <th>Observacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for recoleccion in recoleccions %}
+                        <tr>
+                            <td><a href="{% url 'recoleccionDetail' recoleccion.id %}">{{ recoleccion.Horario_ID }}</a>
+                            </td>
+                            <td>{{ recoleccion.Usuario_ID }}</td>
+                            <td>{{ recoleccion.Personal_ID }}</td>
+                            <td>{{ recoleccion.Maquinaria_ID }}</td>
+                            <td>{{ recoleccion.Residuo_ID }}</td>
+                            <td>{{ recoleccion.peso }}</td>
+                            <td>{{ recoleccion.medida }}</td>
+                            <td>{{ recoleccion.TipoRecoleccion_ID }}</td>
+                            <td>{{ recoleccion.observacion }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
 
 {% endblock %}

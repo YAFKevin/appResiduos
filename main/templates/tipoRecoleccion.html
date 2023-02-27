@@ -40,4 +40,32 @@
     </div>
 </main>
 
+<!-- <body>
+    <div class="container mt-4 table-responsive">
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover mt-4">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción por</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for recoleccion in recoleccions %}
+                        <tr>
+                            <td><a href="{% url 'tipoRecoleccionDetail' tipoRecoleccion.id %}">{{ tipoRecoleccion.tipoRecoleccion_ID }}</a>
+                            </td>
+                            <td>{{ tipoRecoleccion.nombre }}</td>
+                            <td>{{ tipoRecoleccion.descripcion }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+<!-- </body> -->
+
 {% endblock %}
