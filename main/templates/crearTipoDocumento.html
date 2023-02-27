@@ -2,19 +2,25 @@
 
 {% block content %}
 
-<h1>Registar tipo de documento</h1>
+<main class="container">
 
-{{error}}
+    <div class="row">
 
-<form action="/tipoDocumento/crear/" method="POST">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="text-center">Registrar tipo de documento</h1>
+            {{error}}
+            <form action="/tipoDocumento/crear/" method="POST" class="card card-body">
+                {% csrf_token %}
 
-    {% csrf_token %}
+                {{form.as_p}}
 
-    {{form.as_p}}
-
-    <button>
-        Guardar
-    </button>
-
-</form>
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+                <br>
+                <a href="/tipoDocumento/" class="btn btn-secondary" >Regresar</a>
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %} 

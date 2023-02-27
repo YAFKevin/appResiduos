@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Listado de tipo de recolección</h1>
 
+<main class="container-fluid">
 
+    <div class="row">
 
-<ul>
-    {% for tipoRecoleccion in tipoRecoleccions %}
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Listado de tipo de recolección</h1>
 
-    <li>
-        <h2>{{tipoRecoleccion.nombre}}</h2>
-        <p>{{tipoRecoleccion.descripcion}}</p>
+            <div>
+                <a class="btn btn-success" href="/tipoRecoleccion/crear">Crear</a>
+            </div>
 
-    </li>
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarTipoRecoleccion' %}"
+                    class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscTipoRecoleccion"
+                        placeholder="Buscar tipo de recolección" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
 
-    {% endfor %}
+            <ul class="list-group mt-4">
+                {% for tipoRecoleccion in tipoRecoleccions %}
 
-</ul>
+                <a class="list-group-item" href="{% url 'tipoRecoleccionDetail' tipoRecoleccion.id %}">
+                    <p> <strong>Nombre: </strong> {{tipoRecoleccion.nombre}}</p>
+                    <p> <strong>Descripción: </strong> {{tipoRecoleccion.descripcion}}</p>
+                </a>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+</main>
 
 {% endblock %}

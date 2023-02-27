@@ -1,26 +1,33 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-{{error}}
+<div class="text-center">
+    <h2>Editar medida de recolección</h2>
+
+    {{error}}
+</div>
+
+<div class="col-md-4 offset-md-4 card card-body">
 
 
-<form method="POST">
+    <form method="POST" >
 
-    {% csrf_token %}
-    {{form.as_p}}
+        {% csrf_token %}
+        {{form.as_p}}
 
-    <button>Actualizar</button>
+        <button class="btn btn-warning">Actualizar</button>
 
-</form>
+    </form>
 
-<form action="{% url 'eliminarMedidaRecoleccion' medidaRecoleccion.id %}" method="POST">
+    <form action="{% url 'eliminarMedidaRecoleccion' medidaRecoleccion.id %}" method="POST">
 
-    {% csrf_token %}
-    <br>
+        {% csrf_token %}
+        <br>
 
-    <button>Eliminar</button>
+        <button class="btn btn-danger">Eliminar</button>
 
-</form>
+    </form>
 
-{% endblock %} 
+</div>
+
+{% endblock %}

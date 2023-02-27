@@ -25,6 +25,9 @@ urlpatterns = [
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
 
+    path('', views.home, name='home'),
+
+
 
     path('tipoDocumento/', views.listarTipoDocumento, name='tipoDocumento'),
     path('tipoMaquinaria/', views.listarTipoMaquinaria, name='tipoMaquinaria'),
@@ -42,6 +45,8 @@ urlpatterns = [
     path('recoleccion/', views.listarRecoleccion, name='recoleccion'),
     path('detalleIncentivo/', views.listarDetalleIncentivo, name='detalleIncentivo'),
     path('medidaRecoleccion/', views.listarMedidaRecoleccion, name='medidaRecoleccion'),
+
+    path('auditoria/', views.listarAuditoria, name='auditoria'),
     
 
 
@@ -77,6 +82,8 @@ urlpatterns = [
     path('maquinaria/<int:maquinaria_id>/eliminar', views.eliminarMaquinaria, name='eliminarMaquinaria'),
     path('tipoPersonal/<int:tipoPersonal_id>/eliminar', views.eliminarTipoPersonal, name='eliminarTipoPersonal'),
     path('tipoMaquinaria/<int:tipoMaquinaria_id>/eliminar', views.eliminarTipoMaquinaria, name='eliminarTipoMaquinaria'),
+    path('tipoRecoleccion/<int:tipoRecoleccion_id>/eliminar', views.eliminarTipoRecoleccion, name='eliminarTipoRecoleccion'),
+    path('medidaRecoleccion/<int:medidaRecoleccion_id>/eliminar', views.eliminarMedidaRecoleccion, name='eliminarMedidaRecoleccion'),
 
 
     path('horario/<int:horario_id>', views.horarioDetail, name='horarioDetail'),
@@ -94,6 +101,8 @@ urlpatterns = [
     path('tipoCiudadano/<int:tipoCiudadano_id>', views.tipoCiudadanoDetail, name='tipoCiudadanoDetail'),
     path('tipoPersonal/<int:tipoPersonal_id>', views.tipoPersonalDetail, name='tipoPersonalDetail'),
     path('tipoMaquinaria/<int:tipoMaquinaria_id>', views.tipoMaquinariaDetail, name='tipoMaquinariaDetail'),
+    path('tipoRecoleccion/<int:tipoRecoleccion_id>', views.tipoRecoleccionDetail, name='tipoRecoleccionDetail'),
+    
 
     #Buscar
     path('buscarPersonal/', views.buscarPersonal, name='buscarPersonal'),
@@ -106,5 +115,13 @@ urlpatterns = [
     path('buscarTipoPersonal/', views.buscarTipoPersonal, name='buscarTipoPersonal'),
     path('buscarTipoCiudadano/', views.buscarTipoCiudadano, name='buscarTipoCiudadano'),
     path('buscarTipoMaquinaria/', views.buscarTipoMaquinaria, name='buscarTipoMaquinaria'),
+    path('buscarDetalleIncentivo/', views.buscarDetalleIncentivo, name='buscarDetalleIncentivo'),
+    path('buscarTipoRecoleccion/', views.buscarTipoRecoleccion, name='buscarTipoRecoleccion'),
+    path('buscarHorario/', views.buscarHorario, name='buscarHorario'),
     
+    #reportes
+    path('maquinariaVigente/', views.maquinariaVigente, name='maquinariaVigente'),
+    # path('maquinariaSegunTipo/', views.maquinariaSegunTipo, name='maquinariaSegunTipo'),
+
+
 ]

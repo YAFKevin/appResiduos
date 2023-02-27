@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 
 <div class="text-center">
     <h2>Editar recolección</h2>
 
     {{error}}
 </div>
-
-<div class="col-md-4 offset-md-4">
+ 
+<div class="col-md-4 offset-md-4 card card-body">
 
 
     <form method="POST" >
@@ -19,7 +17,7 @@
     
         <button class="btn btn-warning">Actualizar</button>
     
-    </form>
+    </form> 
     
     <form action="{% url 'eliminarRecoleccion' recoleccion.id %}" method="POST">
     

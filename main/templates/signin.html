@@ -8,11 +8,8 @@
 
             <form action="/signin/" method="POST" class="card card-body">
 
-                {{error}}
                 {% csrf_token %}
                 <h1 class="text-center">Iniciar Sesión</h1>
-
-                {{error}}
 
                 {% csrf_token %}
 
@@ -32,6 +29,14 @@
                 <button class="btn btn-primary">
                     Iniciar Sesión
                 </button>
+
+                <br>
+
+                {% if error %}
+                <div class="alert alert-danger d-block" role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
 
             </form>
 

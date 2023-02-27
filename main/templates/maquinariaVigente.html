@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <!-- <th scope="col">ID</th> -->
+      <th scope="col">Nombre</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Carga Neta</th>
+      <th scope="col">Carga Útil</th>
+      <th scope="col">Tipo de Maquinaria</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for maquinaria in maquinarias %}
+    <tr>
+      <!-- <th scope="row">{{ maquinaria.id }}</th> -->
+      <td scope="row">{{ maquinaria.nombre }}</td>
+      <td>{{ maquinaria.placa }}</td>
+      <td>{{ maquinaria.estado }}</td>
+      <td>{{ maquinaria.cargaNeta }}</td>
+      <td>{{ maquinaria.cargaUtil }}</td>
+      <td>{{ maquinaria.idTipoMaqui }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No hay maquinarias vigentes.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card card-body">
+
+    <h1 class="text-center">Registro de últimos cambios</h1>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Acción</th>
+            <th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for auditoria in auditorias %}
+            <tr>
+              <td>{{ auditoria.fecha }}</td>
+              <td>{{ auditoria.accion }}</td>
+              <td>{{ auditoria.usuario }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+</div>
+
+
+
+  
+  
+
+
+{% endblock %}

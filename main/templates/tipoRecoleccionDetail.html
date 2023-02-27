@@ -2,11 +2,8 @@
 
 {% block content %}
 
-
-
-
 <div class="text-center">
-    <h2>Editar tipo de maquinaria</h2>
+    <h2>Editar tipo de recolección</h2>
 
     {{error}}
 </div>
@@ -23,7 +20,7 @@
         <button class="btn btn-warning">Actualizar</button>
     
     </form> 
-    <form action="{% url 'eliminarTipoMaquinaria' tipoMaquinaria.id %}" method="POST">
+    <form action="{% url 'eliminarTipoRecoleccion' tipoRecoleccion.id %}" method="POST">
     
         {% csrf_token %}
         <br>

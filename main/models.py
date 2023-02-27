@@ -2,15 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class tipoDocumento(models.Model):
-    nombre = models.CharField(max_length= 30, unique=True)
+    nombre = models.CharField(max_length=30, unique=True)
+
     def __str__(self):
         return self.nombre
 
+
 class tipoMaquinaria(models.Model):
     nombre = models.CharField(max_length=20, unique=True, null=True)
+
     def __str__(self):
         return self.nombre
+
 
 class residuo(models.Model):
     nombre = models.CharField(max_length=20, unique=True)
@@ -20,12 +26,14 @@ class residuo(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class tipoIncentivo(models.Model):
     nombre = models.CharField(max_length=35)
     descripcion = models.TextField(blank=True)
 
     def __str__(self):
         return self.nombre
+
 
 class tipoPersonal(models.Model):
     nombre = models.CharField(max_length=30)
@@ -34,9 +42,10 @@ class tipoPersonal(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class zona(models.Model):
     nombre = models.CharField(max_length=50)
-    estado = models.BooleanField()
+    estado = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
@@ -58,6 +67,7 @@ class personal(models.Model):
     def __str__(self):
         return self.apellido + ' ' + self.nombre
 
+
 class tipoCiudadano(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField(blank=True)
@@ -65,15 +75,15 @@ class tipoCiudadano(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class ciudadano(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     documento = models.CharField(max_length=20, unique=True)
     celular = models.CharField(max_length=9, unique=True)
     direccion = models.CharField(max_length=100)
-    estado = models.BooleanField() 
+    estado = models.BooleanField(default=True)
     idTipoDoc = models.ForeignKey(tipoDocumento, on_delete=models.CASCADE)
-    # idEmpadro = models.ForeignKey(empadronamiento, on_delete=models.CASCADE)
     idTipoCiud = models.ForeignKey(tipoCiudadano, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -83,7 +93,7 @@ class ciudadano(models.Model):
 class maquinaria(models.Model):
     nombre = models.CharField(max_length=30)
     placa = models.CharField(max_length=7, unique=True)
-    estado = models.BooleanField()
+    estado = models.BooleanField(default=True)
     cargaNeta = models.FloatField()
     cargaUtil = models.FloatField()
     idTipoMaqui = models.ForeignKey(tipoMaquinaria, on_delete=models.CASCADE)
@@ -91,24 +101,26 @@ class maquinaria(models.Model):
     def __str__(self):
         return self.placa + ' | ' + self.nombre + ' | ' + self.idTipoMaqui.nombre
 
+
 class ruta(models.Model):
     nombre = models.CharField(max_length=200)
     lugarInicio = models.CharField(max_length=100)
     lugarFin = models.CharField(max_length=100)
     idZona = models.ForeignKey(zona, on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.nombre
+
 
 class horario(models.Model):
     fecha = models.DateField()
     hora = models.TimeField()
-    estado = models.BooleanField()
+    estado = models.BooleanField(default=True)
     idRuta = models.ForeignKey(ruta, on_delete=models.CASCADE)
 
-    #mostrar la ruta con la hora y fecha del horario en string
+    # mostrar la ruta con la hora y fecha del horario en string
     def __str__(self):
-        return self.idRuta.nombre + ' | ' +  str(self.fecha) + ' ' + str(self.hora)  
+        return self.idRuta.nombre + ' | ' + str(self.fecha) + ' ' + str(self.hora)
 
 
 class tipoRecoleccion(models.Model):
@@ -116,7 +128,8 @@ class tipoRecoleccion(models.Model):
     descripcion = models.TextField(blank=True)
 
     def __str__(self):
-        return self.nombre  
+        return self.nombre
+
 
 class medidaRecoleccion(models.Model):
     nombre = models.CharField(max_length=25)
@@ -132,24 +145,31 @@ class recoleccion(models.Model):
     Residuo_ID = models.ForeignKey(residuo, on_delete=models.CASCADE)
     Horario_ID = models.ForeignKey(horario, on_delete=models.CASCADE)
     Usuario_ID = models.ForeignKey(User, on_delete=models.CASCADE)
-    TipoRecoleccion_ID = models.ForeignKey(tipoRecoleccion, on_delete=models.CASCADE, null = True)
-    #ingresar peso de recoleccion
-    peso = models.FloatField(null = True)
-    #ingresar medida de recoleccion
-    medida = models.ForeignKey(medidaRecoleccion, on_delete=models.CASCADE, null = True)
+    TipoRecoleccion_ID = models.ForeignKey(
+        tipoRecoleccion, on_delete=models.CASCADE, null=True)
+    peso = models.FloatField(null=True)
+    medida = models.ForeignKey(
+        medidaRecoleccion, on_delete=models.CASCADE, null=True)
 
-    #mostrar el el nombre del residuo y la fecha de recoleccion en string
+    # mostrar el el nombre del residuo y la fecha de recoleccion en string
     def __str__(self):
         return self.Residuo_ID.nombre + ' | ' + str(self.Horario_ID.fecha) + ' ' + str(self.Horario_ID.hora)
-    
+
 
 class detalleIncentivo(models.Model):
     cantidad = models.IntegerField()
-    idTipoIncentivo = models.ForeignKey(tipoIncentivo, on_delete=models.CASCADE)
+    idTipoIncentivo = models.ForeignKey(
+        tipoIncentivo, on_delete=models.CASCADE)
     idRecoleccion = models.ForeignKey(recoleccion, on_delete=models.CASCADE)
     idCiudadano = models.ForeignKey(ciudadano, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.idCiudadano.apellido + ' ' + self.idCiudadano.nombre + ' | ' + self.idRecoleccion.Residuo_ID.nombre + ' | ' + str(self.idRecoleccion.Horario_ID.fecha) + ' ' + str(self.idRecoleccion.Horario_ID.hora)
-    
 
+class auditoria(models.Model):
+    fecha = models.DateTimeField(auto_now_add=True)
+    accion = models.CharField(max_length=50)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.usuario.username + ' | ' + self.accion 

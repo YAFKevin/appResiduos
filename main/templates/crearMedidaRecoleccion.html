@@ -16,12 +16,14 @@
             <form action="/medidaRecoleccion/crear/" method="POST" class="card card-body">
 
                 {% csrf_token %}
-
+ 
                 {{form.as_p}}
 
-                <button>
+                <button class="btn btn-success">
                     Guardar
                 </button>
+                <br>
+                <a href="/medidaRecoleccion/" class="btn btn-secondary" >Regresar</a>
 
             </form>
         </div>
@@ -30,5 +32,8 @@
     </div>
 
 </main>
+
+
+
 
 {% endblock %}

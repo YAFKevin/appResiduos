@@ -4,12 +4,23 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm, medidaRecoleccionForm
-from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion, auditoria
 from django.contrib.auth.decorators import login_required
+#imoprtar datetime
+import datetime as dt
 
+
+# def home(request):
+#     return render(request, 'home.html')
 
 def home(request):
-    return render(request, 'home.html')
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
+    context = {
+        'username': username
+    }
+    return render(request, 'home.html', context)
 
 
 def signout(request):
@@ -54,6 +65,11 @@ def signup(request):
                     username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
+                 #Obtener la fecha actual
+                fechas = dt.datetime.now()
+                #Insertar la fecha a la tabla auditoria 
+                auditorisa = auditoria(fecha=fechas, accion="Registro de usuario", usuario=request.user)
+                auditorisa.save()
                 return redirect('tipoDocumento')
             except IntegrityError:
                 return render(request, 'signup.html', {
@@ -64,6 +80,11 @@ def signup(request):
             'form': UserCreationForm,
             "error": 'Las contraseñas no coinciden'})
 
+@login_required
+def listarAuditoria(request):
+    auditorias = auditoria.objects.all()
+
+    return render(request, 'auditoria.html', {'auditorias': auditorias})
 
 @login_required
 def listarTipoDocumento(request):
@@ -176,6 +197,8 @@ def listarMedidaRecoleccion(request):
     return render(request, 'medidaRecoleccion.html', {'medidaRecoleccions': medidaRecoleccions})
 
 
+#--CREAR
+
 @login_required
 def crearTipoDocumento(request):
 
@@ -191,6 +214,13 @@ def crearTipoDocumento(request):
             newTipoDocumento = form.save(commit=False)
             newTipoDocumento.save()
             # return redirect('tipoDocumento')
+
+            #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Documento", usuario=request.user)
+            auditorisa.save()
+
             return render(request, 'crearTipoDocumento.html', {
                 'form': tipoDocumentoForm
             })
@@ -213,6 +243,12 @@ def crearTipoMaquinaria(request):
             form = tipoMaquinariaForm(request.POST)
             newTipoMaquinaria = form.save(commit=False)
             newTipoMaquinaria.save()
+
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Maquinaria", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearTipoMaquinaria.html', {
                 'form': tipoMaquinariaForm
             })
@@ -235,6 +271,11 @@ def crearResiduo(request):
             form = residuoForm(request.POST)
             newResiduo = form.save(commit=False)
             newResiduo.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de residuo", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearResiduo.html', {
                 'form': residuoForm
             })
@@ -257,6 +298,11 @@ def crearTipoIncentivo(request):
             form = tipoIncentivoForm(request.POST)
             newTipoIncentivo = form.save(commit=False)
             newTipoIncentivo.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Incentivo", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearTipoIncentivo.html', {
                 'form': tipoIncentivoForm
             })
@@ -279,6 +325,11 @@ def crearTipoPersonal(request):
             form = tipoPersonalForm(request.POST)
             newTipoPersonal = form.save(commit=False)
             newTipoPersonal.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Personal", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearTipoPersonal.html', {
                 'form': tipoPersonalForm
             })
@@ -301,6 +352,11 @@ def crearZona(request):
             form = zonaForm(request.POST)
             newZona = form.save(commit=False)
             newZona.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Zona", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearZona.html', {
                 'form': zonaForm
             })
@@ -323,6 +379,11 @@ def crearPersonal(request):
             form = personalForm(request.POST)
             newPersonal = form.save(commit=False)
             newPersonal.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Personal", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearPersonal.html', {
                 'form': personalForm
             })
@@ -345,6 +406,11 @@ def crearTipoCiudadano(request):
             form = tipoCiudadanoForm(request.POST)
             newTipoCiudadano = form.save(commit=False)
             newTipoCiudadano.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Ciudadano", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearTipoCiudadano.html', {
                 'form': tipoCiudadanoForm
             })
@@ -367,6 +433,11 @@ def crearCiudadano(request):
             form = ciudadanoForm(request.POST)
             newCiudadano = form.save(commit=False)
             newCiudadano.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de ciudadano", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearCiudadano.html', {
                 'form': ciudadanoForm
             })
@@ -389,6 +460,11 @@ def crearMaquinaria(request):
             form = maquinariaForm(request.POST)
             newMaquinaria = form.save(commit=False)
             newMaquinaria.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de maquinaria", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearMaquinaria.html', {
                 'form': maquinariaForm
             })
@@ -411,6 +487,11 @@ def crearRuta(request):
             form = rutaForm(request.POST)
             newRuta = form.save(commit=False)
             newRuta.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de ruta", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearRuta.html', {
                 'form': rutaForm
             })
@@ -433,6 +514,11 @@ def crearHorario(request):
             form = horarioForm(request.POST)
             newHorario = form.save(commit=False)
             newHorario.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Horario", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearHorario.html', {
                 'form': horarioForm
             })
@@ -455,6 +541,11 @@ def crearTipoRecoleccion(request):
             form = tipoRecoleccionForm(request.POST)
             newTipoRecoleccion = form.save(commit=False)
             newTipoRecoleccion.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Tipo Recoleccion", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearTipoRecoleccion.html', {
                 'form': tipoRecoleccionForm
             })
@@ -476,10 +567,20 @@ def crearRecoleccion(request):
         try:
             form = recoleccionForm(request.POST)
             newRecoleccion = form.save(commit=False)
+            
+            newRecoleccion.usuario = request.user
             newRecoleccion.save()
+
+            #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de recoleccion", usuario=request.user)
+            auditorisa.save()
+
             return render(request, 'crearRecoleccion.html', {
                 'form': recoleccionForm
             })
+
         except ValueError:
             return render(request, 'crearRecoleccion.html', {
                 'form': recoleccionForm,
@@ -498,6 +599,11 @@ def crearMedidaRecoleccion(request):
             form = medidaRecoleccionForm(request.POST)
             newMedidaRecoleccion = form.save(commit=False)
             newMedidaRecoleccion.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de medida recolección", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearMedidaRecoleccion.html', {
                 'form': medidaRecoleccionForm
             })
@@ -520,6 +626,11 @@ def crearDetalleIncentivo(request):
             form = detalleIncentivoForm(request.POST)
             newDetalleIncentivo = form.save(commit=False)
             newDetalleIncentivo.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Creacion de Detalle incentivo", usuario=request.user)
+            auditorisa.save()
             return render(request, 'crearDetalleIncentivo.html', {
                 'form': detalleIncentivoForm
             })
@@ -528,7 +639,7 @@ def crearDetalleIncentivo(request):
                 'form': detalleIncentivoForm,
                 'error': 'Por favor, ingrese un dato válido'
             })
-
+##-----------------------EDITAR-----------------------##
 
 @login_required
 def recoleccionDetail(request, recoleccion_id):
@@ -541,17 +652,37 @@ def recoleccionDetail(request, recoleccion_id):
             recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
             form = recoleccionForm(request.POST, instance=recoleccions)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar recolección", usuario=request.user)
+            auditorisa.save()
             return redirect('recoleccion')
         except ValueError:
             return render(request, 'recoleccionDetail.html', {'recoleccion': recoleccions, 'form': form, 'error': 'Error al actualizar datos'})
 
 
 @login_required
-def eliminarRecoleccion(request, recoleccion_id):
-    recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
-    if request.method == 'POST':
-        recoleccions.delete()
-        return redirect('recoleccion')
+def tipoRecoleccionDetail(request, tipoRecoleccion_id):
+    if request.method == 'GET':
+        tipoRecoleccions = get_object_or_404(
+            tipoRecoleccion, pk=tipoRecoleccion_id)
+        form = tipoRecoleccionForm(instance=tipoRecoleccions)
+        return render(request, 'tipoRecoleccionDetail.html', {'tipoRecoleccion': tipoRecoleccions, 'form': form})
+    else:
+        try:
+            tipoRecoleccions = get_object_or_404(
+                tipoRecoleccion, pk=tipoRecoleccion_id)
+            form = tipoRecoleccionForm(request.POST, instance=tipoRecoleccions)
+            form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar de Tipo de Recolección", usuario=request.user)
+            auditorisa.save()
+            return redirect('tipoRecoleccion')
+        except ValueError:
+            return render(request, 'tipoRecoleccionDetail.html', {'tipoRecoleccion': tipoRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})
 
 
 @login_required
@@ -565,17 +696,14 @@ def ciudadanoDetail(request, ciudadano_id):
             ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
             form = ciudadanoForm(request.POST, instance=ciudadanos)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar ciudadano", usuario=request.user)
+            auditorisa.save()
             return redirect('ciudadano')
         except ValueError:
             return render(request, 'ciudadanoDetail.html', {'ciudadano': ciudadanos, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarCiudadano(request, ciudadano_id):
-    ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
-    if request.method == 'POST':
-        ciudadanos.delete()
-        return redirect('ciudadano')
 
 
 @login_required
@@ -592,25 +720,15 @@ def detalleIncentivoDetail(request, detalleIncentivo_id):
             form = detalleIncentivoForm(
                 request.POST, instance=detalleIncentivos)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar detalle incentivo", usuario=request.user)
+            auditorisa.save()
             return redirect('detalleIncentivo')
         except ValueError:
             return render(request, 'detalleIncentivoDetail.html', {'detalleIncentivo': detalleIncentivos, 'form': form, 'error': 'Error al actualizar datos'})
 
-
-@login_required
-def eliminarDetalleIncentivo(request, detalleIncentivo_id):
-    detalleIncentivos = get_object_or_404(
-        detalleIncentivo, pk=detalleIncentivo_id)
-    if request.method == 'POST':
-        detalleIncentivos.delete()
-        return redirect('detalleIncentivo')
-    
-@login_required
-def eliminarTipoCiudadano(request, tipoCiudadano_id):
-    tipoCiudadanos = get_object_or_404(tipoCiudadano, pk=tipoCiudadano_id)
-    if request.method == 'POST':
-        tipoCiudadanos.delete()
-        return redirect('tipoCiudadano')
 
 @login_required
 def tipoCiudadanoDetail(request, tipoCiudadano_id):
@@ -626,6 +744,11 @@ def tipoCiudadanoDetail(request, tipoCiudadano_id):
             form = tipoCiudadanoForm(
                 request.POST, instance=tipoCiudadanos)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar tipo ciudadano", usuario=request.user)
+            auditorisa.save()
             return redirect('tipoCiudadano')
         except ValueError:
             return render(request, 'tipoCiudadanoDetail.html', {'tipoCiudadano': tipoCiudadanos, 'form': form, 'error': 'Error al actualizar datos'})
@@ -642,17 +765,14 @@ def horarioDetail(request, horario_id):
             horarios = get_object_or_404(horario, pk=horario_id)
             form = horarioForm(request.POST, instance=horarios)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar horario", usuario=request.user)
+            auditorisa.save()
             return redirect('horario')
         except ValueError:
             return render(request, 'horarioDetail.html', {'horario': horarios, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarHorario(request, horario_id):
-    horarios = get_object_or_404(horario, pk=horario_id)
-    if request.method == 'POST':
-        horarios.delete()
-        return redirect('horario')
 
 
 @login_required
@@ -666,17 +786,14 @@ def personalDetail(request, personal_id):
             personals = get_object_or_404(personal, pk=personal_id)
             form = personalForm(request.POST, instance=personals)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar personal", usuario=request.user)
+            auditorisa.save()
             return redirect('personal')
         except ValueError:
             return render(request, 'personalDetail.html', {'personal': personals, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarPersonal(request, personal_id):
-    personals = get_object_or_404(personal, pk=personal_id)
-    if request.method == 'POST':
-        personals.delete()
-        return redirect('personal')
 
 
 @login_required
@@ -690,18 +807,14 @@ def residuoDetail(request, residuo_id):
             residuos = get_object_or_404(residuo, pk=residuo_id)
             form = residuoForm(request.POST, instance=residuos)
             form.save()
+             #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar residuo", usuario=request.user)
+            auditorisa.save()
             return redirect('residuo')
         except ValueError:
             return render(request, 'residuoDetail.html', {'residuo': residuos, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarResiduo(request, residuo_id):
-    residuos = get_object_or_404(residuo, pk=residuo_id)
-    if request.method == 'POST':
-        residuos.delete()
-        return redirect('residuo')
-
 
 @login_required
 def rutaDetail(request, ruta_id):
@@ -714,18 +827,14 @@ def rutaDetail(request, ruta_id):
             rutas = get_object_or_404(ruta, pk=ruta_id)
             form = rutaForm(request.POST, instance=rutas)
             form.save()
+                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar ruta", usuario=request.user)
+            auditorisa.save()
             return redirect('ruta')
         except ValueError:
             return render(request, 'rutaDetail.html', {'ruta': rutas, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarRuta(request, ruta_id):
-    rutas = get_object_or_404(ruta, pk=ruta_id)
-    if request.method == 'POST':
-        rutas.delete()
-        return redirect('ruta')
-
 
 @login_required
 def zonaDetail(request, zona_id):
@@ -738,40 +847,36 @@ def zonaDetail(request, zona_id):
             zonas = get_object_or_404(zona, pk=zona_id)
             form = zonaForm(request.POST, instance=zonas)
             form.save()
+                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar zona", usuario=request.user)
+            auditorisa.save()
             return redirect('zona')
         except ValueError:
             return render(request, 'zonaDetail.html', {'zona': zonas, 'form': form, 'error': 'Error al actualizar datos'})
 
-
-@login_required
-def eliminarZona(request, zona_id):
-    zonas = get_object_or_404(zona, pk=zona_id)
-    if request.method == 'POST':
-        zonas.delete()
-        return redirect('zona')
-    
-@login_required
-def eliminarTipoMaquinaria(request, tipoMaquinaria_id):
-    tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
-    if request.method == 'POST':
-        tipoMaquinarias.delete()
-        return redirect('tipoMaquinaria')
-
 @login_required
 def tipoMaquinariaDetail(request, tipoMaquinaria_id):
     if request.method == 'GET':
-        tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+        tipoMaquinarias = get_object_or_404(
+            tipoMaquinaria, pk=tipoMaquinaria_id)
         form = tipoMaquinariaForm(instance=tipoMaquinarias)
         return render(request, 'tipoMaquinariaDetail.html', {'tipoMaquinaria': tipoMaquinarias, 'form': form})
     else:
         try:
-            tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+            tipoMaquinarias = get_object_or_404(
+                tipoMaquinaria, pk=tipoMaquinaria_id)
             form = tipoMaquinariaForm(request.POST, instance=tipoMaquinarias)
             form.save()
+                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar tipo de maquinaria", usuario=request.user)
+            auditorisa.save()
             return redirect('tipoMaquinaria')
         except ValueError:
             return render(request, 'tipoMaquinariaDetail.html', {'tipoMaquinaria': tipoMaquinarias, 'form': form, 'error': 'Error al actualizar datos'})
-
 
 @login_required
 def tipoDocumentoDetail(request, tipoDocumento_id):
@@ -785,24 +890,14 @@ def tipoDocumentoDetail(request, tipoDocumento_id):
                 tipoDocumento, pk=tipoDocumento_id)
             form = tipoDocumentoForm(request.POST, instance=tipoDocumentos)
             form.save()
+                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar tipo documento", usuario=request.user)
+            auditorisa.save()
             return redirect('tipoDocumento')
         except ValueError:
             return render(request, 'tipoDocumentoDetail.html', {'tipoDocumento': tipoDocumentos, 'form': form, 'error': 'Error al actualizar datos'})
-
-
-@login_required
-def eliminarTipoDocumento(request, tipoDocumento_id):
-    tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
-    if request.method == 'POST':
-        tipoDocumentos.delete()
-        return redirect('tipoDocumento')
-    
-@login_required
-def eliminarTipoIncentivo(request, tipoIncentivo_id):
-    tipoIncentivos = get_object_or_404(tipoIncentivo, pk=tipoIncentivo_id)
-    if request.method == 'POST':
-        tipoIncentivos.delete()
-        return redirect('tipoIncentivo')
 
 @login_required
 def tipoIncentivoDetail(request, tipoIncentivo_id):
@@ -816,9 +911,15 @@ def tipoIncentivoDetail(request, tipoIncentivo_id):
                 tipoIncentivo, pk=tipoIncentivo_id)
             form = tipoIncentivoForm(request.POST, instance=tipoIncentivos)
             form.save()
+                            #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar tipo de incentivo", usuario=request.user)
+            auditorisa.save()
             return redirect('tipoIncentivo')
         except ValueError:
             return render(request, 'tipoIncentivoDetail.html', {'tipoIncentivo': tipoIncentivos, 'form': form, 'error': 'Error al actualizar datos'})
+
 
 @login_required
 def maquinariaDetail(request, maquinaria_id):
@@ -831,34 +932,39 @@ def maquinariaDetail(request, maquinaria_id):
             maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
             form = maquinariaForm(request.POST, instance=maquinarias)
             form.save()
+                                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar maquinaria", usuario=request.user)
+            auditorisa.save()
             return redirect('maquinaria')
         except ValueError:
             return render(request, 'maquinariaDetail.html', {'maquinaria': maquinarias, 'form': form, 'error': 'Error al actualizar datos'})
 
-
 @login_required
-def eliminarMaquinaria(request, maquinaria_id):
-    maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
-    if request.method == 'POST':
-        maquinarias.delete()
-        return redirect('maquinaria')
+def medidaRecoleccionDetail(request, medidaRecoleccion_id):
+    if request.method == 'GET':
+        medidaRecoleccions = get_object_or_404(
+            medidaRecoleccion, pk=medidaRecoleccion_id)
+        form = medidaRecoleccionForm(instance=medidaRecoleccions)
+        return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form})
+    else:
+        try:
+            medidaRecoleccions = get_object_or_404(
+                medidaRecoleccion, pk=medidaRecoleccion_id)
+            form = medidaRecoleccionForm(
+                request.POST, instance=medidaRecoleccions)
+            form.save()
+                                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar medida de recolección", usuario=request.user)
+            auditorisa.save()
 
+            return redirect('medidaRecoleccion')
+        except ValueError:
+            return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})
 
-@login_required
-def eliminarMedidaRecolección(request, medidaRecolección_id):
-    medidaRecoleccions = get_object_or_404(
-        medidaRecoleccion, pk=medidaRecolección_id)
-    if request.method == 'POST':
-        medidaRecoleccions.delete()
-        return redirect('medidaRecolección')
-    
-@login_required
-def eliminarTipoPersonal(request, tipoPersonal_id):
-    tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
-    if request.method == 'POST':
-        tipoPersonals.delete()
-        return redirect('tipoPersonal')
-    
 @login_required
 def tipoPersonalDetail(request, tipoPersonal_id):
     if request.method == 'GET':
@@ -870,31 +976,225 @@ def tipoPersonalDetail(request, tipoPersonal_id):
             tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
             form = tipoPersonalForm(request.POST, instance=tipoPersonals)
             form.save()
+                    #Obtener la fecha actual
+            fechas = dt.datetime.now()
+            #Insertar la fecha a la tabla auditoria 
+            auditorisa = auditoria(fecha=fechas, accion="Actualizar tipo de personal", usuario=request.user)
+            auditorisa.save()
             return redirect('tipoPersonal')
         except ValueError:
             return render(request, 'tipoPersonalDetail.html', {'tipoPersonal': tipoPersonals, 'form': form, 'error': 'Error al actualizar datos'})
 
+#----------------Eliminar
 
 @login_required
-def medidaRecoleccionDetail(request, medidaRecolección_id):
-    if request.method == 'GET':
-        medidaRecoleccions = get_object_or_404(
-            medidaRecoleccion, pk=medidaRecolección_id)
-        form = medidaRecoleccionForm(instance=medidaRecoleccions)
-        return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form})
-    else:
-        try:
-            medidaRecoleccions = get_object_or_404(
-                medidaRecoleccion, pk=medidaRecolección_id)
-            form = medidaRecoleccionForm(
-                request.POST, instance=medidaRecoleccions)
-            form.save()
-            return redirect('medidaRecolección')
-        except ValueError:
-            return render(request, 'medidaRecoleccionDetail.html', {'medidaRecoleccion': medidaRecoleccions, 'form': form, 'error': 'Error al actualizar datos'})
+def eliminarResiduo(request, residuo_id):
+    residuos = get_object_or_404(residuo, pk=residuo_id)
+    if request.method == 'POST':
+        residuos.delete()
+         #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar residuo", usuario=request.user)
+        auditorisa.save()
+        return redirect('residuo')
 
-# crear funcion de buscar personal por documento
+@login_required
+def eliminarRecoleccion(request, recoleccion_id):
+    recoleccions = get_object_or_404(recoleccion, pk=recoleccion_id)
+    if request.method == 'POST':
+        recoleccions.delete()
+        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar recolección", usuario=request.user)
+        auditorisa.save()
+        return redirect('recoleccion')
 
+
+@login_required
+def eliminarTipoRecoleccion(request, tipoRecoleccion_id):
+    tipoRecoleccions = get_object_or_404(
+        tipoRecoleccion, pk=tipoRecoleccion_id)
+    if request.method == 'POST':
+        tipoRecoleccions.delete()
+        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de recolección", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoRecoleccion')
+
+
+@login_required
+def eliminarRuta(request, ruta_id):
+    rutas = get_object_or_404(ruta, pk=ruta_id)
+    if request.method == 'POST':
+        rutas.delete()
+        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar ruta", usuario=request.user)
+        auditorisa.save()        
+        return redirect('ruta')
+
+
+@login_required
+def eliminarZona(request, zona_id):
+    zonas = get_object_or_404(zona, pk=zona_id)
+    if request.method == 'POST':
+        zonas.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar zona", usuario=request.user)
+        auditorisa.save()
+        return redirect('zona')
+
+@login_required
+def eliminarHorario(request, horario_id):
+    horarios = get_object_or_404(horario, pk=horario_id)
+    if request.method == 'POST':
+        horarios.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar horario", usuario=request.user)
+        auditorisa.save()
+        return redirect('horario')
+
+@login_required
+def eliminarTipoMaquinaria(request, tipoMaquinaria_id):
+    tipoMaquinarias = get_object_or_404(tipoMaquinaria, pk=tipoMaquinaria_id)
+    if request.method == 'POST':
+        tipoMaquinarias.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de maquinaria", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoMaquinaria')
+
+
+@login_required
+def eliminarTipoDocumento(request, tipoDocumento_id):
+    tipoDocumentos = get_object_or_404(tipoDocumento, pk=tipoDocumento_id)
+    if request.method == 'POST':
+        tipoDocumentos.delete()
+                        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de documento", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoDocumento')
+
+
+@login_required
+def eliminarTipoIncentivo(request, tipoIncentivo_id):
+    tipoIncentivos = get_object_or_404(tipoIncentivo, pk=tipoIncentivo_id)
+    if request.method == 'POST':
+        tipoIncentivos.delete()
+                        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de incentivo", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoIncentivo')
+
+
+@login_required
+def eliminarMaquinaria(request, maquinaria_id):
+    maquinarias = get_object_or_404(maquinaria, pk=maquinaria_id)
+    if request.method == 'POST':
+        maquinarias.delete()
+        #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar maquinaria", usuario=request.user)
+        auditorisa.save()
+        return redirect('maquinaria')
+    
+
+@login_required
+def eliminarDetalleIncentivo(request, detalleIncentivo_id):
+    detalleIncentivos = get_object_or_404(
+        detalleIncentivo, pk=detalleIncentivo_id)
+    if request.method == 'POST':
+        detalleIncentivos.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar detalle incentivo", usuario=request.user)
+        auditorisa.save()
+        return redirect('detalleIncentivo')
+
+
+@login_required
+def eliminarTipoCiudadano(request, tipoCiudadano_id):
+    tipoCiudadanos = get_object_or_404(tipoCiudadano, pk=tipoCiudadano_id)
+    if request.method == 'POST':
+        tipoCiudadanos.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de ciudadano", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoCiudadano')
+
+
+@login_required
+def eliminarMedidaRecoleccion(request, medidaRecoleccion_id):
+    medidaRecoleccions = get_object_or_404(
+        medidaRecoleccion, pk=medidaRecoleccion_id)
+    if request.method == 'POST':
+        medidaRecoleccions.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar medida de recolección", usuario=request.user)
+        auditorisa.save()
+        return redirect('medidaRecolección')
+    
+@login_required
+def eliminarCiudadano(request, ciudadano_id):
+    ciudadanos = get_object_or_404(ciudadano, pk=ciudadano_id)
+    if request.method == 'POST':
+        ciudadanos.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar ciudadano", usuario=request.user)
+        auditorisa.save()
+        return redirect('ciudadano')
+
+
+@login_required
+def eliminarTipoPersonal(request, tipoPersonal_id):
+    tipoPersonals = get_object_or_404(tipoPersonal, pk=tipoPersonal_id)
+    if request.method == 'POST':
+        tipoPersonals.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar tipo de personal", usuario=request.user)
+        auditorisa.save()
+        return redirect('tipoPersonal')
+
+
+
+@login_required
+def eliminarPersonal(request, personal_id):
+    personals = get_object_or_404(personal, pk=personal_id)
+    if request.method == 'POST':
+        personals.delete()
+                #Obtener la fecha actual
+        fechas = dt.datetime.now()
+        #Insertar la fecha a la tabla auditoria 
+        auditorisa = auditoria(fecha=fechas, accion="Eliminar personal", usuario=request.user)
+        auditorisa.save()
+        return redirect('personal')
+
+#-----BUSCAR
 
 @login_required
 def buscarPersonal(request):
@@ -915,6 +1215,7 @@ def buscarCiudadano(request):
     print(request)
     return render(request, template_name, context)
 
+
 @login_required
 def buscarRuta(request):
     template_name = "ruta.html"
@@ -923,6 +1224,7 @@ def buscarRuta(request):
     context = {'rutas': rutas}
     print(request)
     return render(request, template_name, context)
+
 
 @login_required
 def buscarZona(request):
@@ -933,6 +1235,7 @@ def buscarZona(request):
     print(request)
     return render(request, template_name, context)
 
+
 @login_required
 def buscarResiduo(request):
     template_name = "residuo.html"
@@ -942,47 +1245,97 @@ def buscarResiduo(request):
     print(request)
     return render(request, template_name, context)
 
+
 @login_required
 def buscarTipoIncentivo(request):
     template_name = "tipoIncentivo.html"
     buscTipoIncentivo = request.GET['buscTipoIncentivo']
-    tipoIncentivos = tipoIncentivo.objects.filter(nombre__icontains=buscTipoIncentivo)
+    tipoIncentivos = tipoIncentivo.objects.filter(
+        nombre__icontains=buscTipoIncentivo)
     context = {'tipoIncentivos': tipoIncentivos}
     print(request)
     return render(request, template_name, context)
+
 
 @login_required
 def buscarMaquinaria(request):
     template_name = "maquinaria.html"
     buscMaquinaria = request.GET['buscMaquinaria']
-    maquinarias = maquinaria.objects.filter(nombre__icontains=buscMaquinaria)
+    maquinarias = maquinaria.objects.filter(placa__icontains=buscMaquinaria)
     context = {'maquinarias': maquinarias}
     print(request)
     return render(request, template_name, context)
+
 
 @login_required
 def buscarTipoPersonal(request):
     template_name = "tipoPersonal.html"
     buscTipoPersonal = request.GET['buscTipoPersonal']
-    tipoPersonals = tipoPersonal.objects.filter(nombre__icontains=buscTipoPersonal)
+    tipoPersonals = tipoPersonal.objects.filter(
+        nombre__icontains=buscTipoPersonal)
     context = {'tipoPersonals': tipoPersonals}
     print(request)
     return render(request, template_name, context)
+
 
 @login_required
 def buscarTipoCiudadano(request):
     template_name = "tipoCiudadano.html"
     buscTipoCiudadano = request.GET['buscTipoCiudadano']
-    tipoCiudadanos = tipoCiudadano.objects.filter(nombre__icontains=buscTipoCiudadano)
+    tipoCiudadanos = tipoCiudadano.objects.filter(
+        nombre__icontains=buscTipoCiudadano)
     context = {'tipoCiudadanos': tipoCiudadanos}
     print(request)
     return render(request, template_name, context)
+
 
 @login_required
 def buscarTipoMaquinaria(request):
     template_name = "tipoMaquinaria.html"
     buscTipoMaquinaria = request.GET['buscTipoMaquinaria']
-    tipoMaquinarias = tipoMaquinaria.objects.filter(nombre__icontains=buscTipoMaquinaria)
+    tipoMaquinarias = tipoMaquinaria.objects.filter(
+        nombre__icontains=buscTipoMaquinaria)
     context = {'tipoMaquinarias': tipoMaquinarias}
+    print(request)
+    return render(request, template_name, context)
+
+
+@login_required
+def buscarDetalleIncentivo(request):
+    template_name = "detalleIncentivo.html"
+    buscDetalleIncentivo = request.GET['buscDetalleIncentivo']
+    detalleIncentivos = detalleIncentivo.objects.filter(
+        idTipoIncentivo__nombre__icontains=buscDetalleIncentivo)
+    context = {'detalleIncentivos': detalleIncentivos}
+    print(request)
+    return render(request, template_name, context)
+
+
+@login_required
+def buscarTipoRecoleccion(request):
+    template_name = "tipoRecoleccion.html"
+    buscTipoRecoleccion = request.GET['buscTipoRecoleccion']
+    tipoRecoleccions = tipoRecoleccion.objects.filter(
+        nombre__icontains=buscTipoRecoleccion)
+    context = {'tipoRecoleccions': tipoRecoleccions}
+    print(request)
+    return render(request, template_name, context)
+
+
+@login_required
+def buscarHorario(request):
+    template_name = "horario.html"
+    buscHorario = request.GET['buscHorario']
+    horarios = horario.objects.filter(
+        hora__icontains=buscHorario)
+    context = {'horarios': horarios}
+    print(request)
+    return render(request, template_name, context)
+
+@login_required
+def maquinariaVigente(request):
+    template_name = "maquinariaVigente.html"
+    maquinarias = maquinaria.objects.filter(estado=True)
+    context = {'maquinarias': maquinarias}
     print(request)
     return render(request, template_name, context)

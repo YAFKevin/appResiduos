@@ -2,20 +2,35 @@
 
 {% block content %}
 
-<h1>Registar ciudadano</h1>
+<main class="container">
 
-{{error}}
+    <div class="row">
 
-<form action="/ciudadano/crear/" method="POST">
+        <div class="col-md-4 offset-md-4">
 
-    {% csrf_token %}
-    
+            <h1 class="text-center">Registrar ciudadano</h1>
 
-    {{form.as_p}}
+            {{error}}
 
-    <button>
-        Guardar
-    </button> 
+            <form action="/ciudadano/crear/" method="POST" class="card card-body">
 
-</form>
+                {% csrf_token %}
+
+                {{form.as_p}}
+
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+                <br>
+                <a href="/ciudadano/" class="btn btn-secondary" >Regresar</a>
+
+                <!-- <a class="btn btn-success" href="/ciudadano/">Guardar</a> -->
+
+            </form>
+        </div>
+
+
+    </div>
+
+</main>
 {% endblock %}

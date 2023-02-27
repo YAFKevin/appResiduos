@@ -2,19 +2,38 @@
 
 {% block content %}
 
-<h1>Registar horario</h1>
 
-{{error}}
+<main class="container">
 
-<form action="/horario/crear/" method="POST">
+    <div class="row">
 
-    {% csrf_token %}
+        <div class="col-md-4 offset-md-4">
 
-    {{form.as_p}}
+            <h1 class="text-center">Registrar horario</h1>
 
-    <button> 
-        Guardar
-    </button>
+            {{error}}
 
-</form>
+            <form action="/horario/crear/" method="POST" class="card card-body">
+
+                {% csrf_token %}
+
+                {{form.as_p}}
+
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+                <br>
+                <a href="/horario/" class="btn btn-secondary" >Regresar</a>
+
+                <!-- <a class="btn btn-success" href="/ciudadano/">Guardar</a> -->
+
+            </form>
+        </div>
+
+
+    </div>
+
+</main>
+
+
 {% endblock %}

@@ -8,6 +8,7 @@
     <title>Sistema de Gestión de Residuos Sólidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -36,8 +37,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/recoleccion">Recolección</a></li>
-
-
+                            <li><a class="dropdown-item" href="/tipoRecoleccion">Tipo de recolección</a></li>
+                            <li><a class="dropdown-item" href="/medidaRecoleccion">Medidas de recolección</a></li>
+                            <li><a class="dropdown-item" href="/residuo">Residuo</a></li>
+                            <li><a class="dropdown-item" href="/detalleIncentivo">Detalle incentivos</a></li>
+                            <li><a class="dropdown-item" href="/tipoIncentivo">Tipo Incentivo</a></li>
                         </ul>
                     </li>
 
@@ -62,6 +66,8 @@
                             <li><a class="dropdown-item" href="/ciudadano">Ciudadano</a></li>
                             <li><a class="dropdown-item" href="/tipoCiudadano">Tipo de ciudadano</a></li>
                             <li><a class="dropdown-item" href="/tipoDocumento">Tipo de documento</a></li>
+                            <li><a class="dropdown-item" href="/personal">Personal</a></li>
+                            <li><a class="dropdown-item" href="/tipoPersonal">Tipo de personal</a></li>
                         </ul>
                     </li>
 
@@ -71,13 +77,20 @@
                             Módulo Logística
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/personal">Personal</a></li>
-                            <li><a class="dropdown-item" href="/tipoPersonal">Tipo de personal</a></li>
-                            <li><a class="dropdown-item" href="/residuo">Residuo</a></li>
-                            <li><a class="dropdown-item" href="/detalleIncentivo">Incentivos entregados</a></li>
-                            <li><a class="dropdown-item" href="/tipoIncentivo">Tipo Incentivo</a></li>
                             <li><a class="dropdown-item" href="/maquinaria">Maquinaria</a></li>
                             <li><a class="dropdown-item" href="/tipoMaquinaria">Tipo maquinaria</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Reportes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/auditoria">Auditoría</a></li>
+                            <li><a class="dropdown-item" href="/maquinariaVigente">Maquinaria Vigente</a></li>
+                            <!-- <li><a class="dropdown-item" href="/maquinariaSegunTipo">Maquinaria segun tipo</a></li> -->
                         </ul>
                     </li>
 
@@ -101,8 +114,6 @@
         </div>
     </nav>
     <br>
-
-
     {% block content %}
     {% endblock %}
 
@@ -112,5 +123,8 @@
         crossorigin="anonymous"></script>
 
 </body>
+
+
+
 
 </html>

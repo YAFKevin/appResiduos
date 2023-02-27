@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, recoleccion, detalleIncentivo, tipoRecoleccion, medidaRecoleccion
+from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, recoleccion, detalleIncentivo, tipoRecoleccion, medidaRecoleccion, auditoria
 
 
 # Register your models here.
 
+admin.site.register(auditoria)
 admin.site.register(tipoDocumento)
 admin.site.register(tipoMaquinaria)
 admin.site.register(residuo)

@@ -5,12 +5,15 @@
 <main class="container-fluid">
 
     <div class="row">
-
         <div class="col-md-6 offset-md-3">
-            <h1 class="text-center">Listado de Tipo de Documento</h1>
+            <h1 class="text-center">Listado de tipo de documento</h1>
+
+            <div>
+                <a class="btn btn-success" href="/tipoDocumento/crear">Crear</a>
+            </div>
+
             <ul class="list-group mt-4">
                 {% for tipoDocumento in tipoDocumentos %}
-
                 <a class="list-group-item" href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">
                     <p><strong>Nombre: </strong>{{tipoDocumento.nombre}}</p>
                 </a>

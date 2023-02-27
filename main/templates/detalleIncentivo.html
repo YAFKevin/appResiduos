@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <main class="container-fluid">
 
     <div class="row">
 
         <div class="col-md-6 offset-md-3">
-            <h1 class="text-center">Listado de detalle de incentivos a ciudadanos</h1>
+            <h1 class="text-center">Listado de detalle de incentivos a ciudadanos</h1> 
+            <div>
+                <a class="btn btn-success" href="/detalleIncentivo/crear">Crear</a>
+            </div>
+
+            <div class="container d-flex justify-content-between">
+                <form action="{% url 'buscarDetalleIncentivo' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
+                    <p class="p-2">Nombre: </p>
+                    <input type="search" class="form-control  mr-sm-2" name="buscDetalleIncentivo"
+                        placeholder="Buscar detalle incentivo" aria-label="buscar">
+                    <br>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+
             <ul class="list-group mt-4">
                 {% for detalleIncentivo in detalleIncentivos %}
 
-
-                <a class="list-group-item" href="{% url 'detalleIncentivoDetail' detalleIncentivo.id %}">                    
+                <a class="list-group-item" href="{% url 'detalleIncentivoDetail' detalleIncentivo.id %}">
                     <p><strong>Tipo de incentivo: </strong>{{detalleIncentivo.idTipoIncentivo}}</p>
                     <p><strong>Cantidad: </strong>{{detalleIncentivo.cantidad}}</p>
                     <p><strong>Recolección: </strong>{{detalleIncentivo.idRecoleccion}}</p>
@@ -23,7 +35,6 @@
         </div>
     </div>
 </main>
-
 
 
 

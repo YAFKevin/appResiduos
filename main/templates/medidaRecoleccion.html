@@ -8,23 +8,20 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de medidas de recolección</h1>
+            <div>
+                <a class="btn btn-success" href="/medidaRecoleccion/crear">Crear</a>
+            </div>
 
             <ul class="list-group mt-4">
                 {% for medidaRecoleccion in medidaRecoleccions %}
 
                 <a class="list-group-item" href="{% url 'medidaRecoleccionDetail' medidaRecoleccion.id %}">
-                    <p> <strong>Nombre:</strong> {{ medidaRecoleccion.Nombre }}</p>
-
+                    <p> <strong>Nombre:</strong> {{ medidaRecoleccion.nombre }}</p>
                 </a>
-
                 {% endfor %}
-
             </ul>
         </div>
-
     </div>
-
-
 </main>
 
 {% endblock %}

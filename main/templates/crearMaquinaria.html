@@ -2,19 +2,26 @@
 
 {% block content %}
 
-<h1>Registar maquinaria</h1>
+<main class="container">
+ 
+    <div class="row">
 
-{{error}}
+        <div class="col-md-4 offset-md-4">
+            <h1 class="text-center">Registrar maquinaria</h1>
+            {{error}}
+            <form action="/maquinaria/crear/" method="POST" class="card card-body">
+                {% csrf_token %}
 
-<form action="/maquinaria/crear/" method="POST">
+                {{form.as_p}}
 
-    {% csrf_token %}
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+                <br>
+                <a href="/maquinaria/" class="btn btn-secondary" >Regresar</a>
+            </form>
+        </div>
+    </div>
+</main>
 
-    {{form}}
-
-    <button>
-        Guardar
-    </button>
-
-</form>
 {% endblock %}

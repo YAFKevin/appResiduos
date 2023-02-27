@@ -2,19 +2,26 @@
 
 {% block content %}
 
-<h1>Registar tipo ciudadano</h1>
 
-{{error}}
+<main class="container">
+ 
+    <div class="row">
 
-<form action="/tipoCiudadano/crear/" method="POST">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="text-center">Registrar tipo ciudadano</h1>
+            {{error}}
+            <form action="/tipoCiudadano/crear/" method="POST" class="card card-body">
+                {% csrf_token %}
 
-    {% csrf_token %}
+                {{form.as_p}}
 
-    {{form.as_p}}
-
-    <button>
-        Guardar
-    </button>
-
-</form>
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+                <br>
+                <a href="/tipoCiudadano/" class="btn btn-secondary" >Regresar</a>
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %}

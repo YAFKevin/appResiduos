@@ -2,26 +2,31 @@
 
 {% block content %}
 
+<div class="text-center">
+    <h2>Editar tipo incentivo</h2>
 
-{{error}}
+    {{error}}
+</div>
 
+<div class="col-md-4 offset-md-4">
 
-<form method="POST">
+    <form method="POST">
 
-    {% csrf_token %}
-    {{form.as_p}}
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning">Actualizar</button>
+    
+    </form>
+    
+    <form action="{% url 'eliminarTipoIncentivo' tipoIncentivo.id %}" method="POST" >
+    
+        {% csrf_token %}
+        <br>
+    
+        <button class="btn btn-danger">Eliminar</button>
+    
+    </form> 
 
-    <button>Actualizar</button>
-
-</form>
-
-<form action="{% url 'eliminarTipoIncentivo' tipoIncentivo.id %}" method="POST">
-
-    {% csrf_token %}
-    <br>
-
-    <button>Eliminar</button>
-
-</form>
+</div>
 
 {% endblock %} 
