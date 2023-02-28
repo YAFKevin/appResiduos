@@ -7,65 +7,57 @@
     <div class="row">
 
         <div class="col-md-6 offset-md-3">
-            <h1 class="text-center">Listado de tipo de recolección</h1>
-
-            <div>
-                <a class="btn btn-success" href="/tipoRecoleccion/crear">Crear</a>
-            </div>
-
-            <div class="container d-flex justify-content-between">
-                <form action="{% url 'buscarTipoRecoleccion' %}"
-                    class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
-                    <p class="p-2">Nombre: </p>
-                    <input type="search" class="form-control  mr-sm-2" name="buscTipoRecoleccion"
-                        placeholder="Buscar tipo de recolección" aria-label="buscar">
-                    <br>
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </div>
-
-            <ul class="list-group mt-4">
-                {% for tipoRecoleccion in tipoRecoleccions %}
-
-                <a class="list-group-item" href="{% url 'tipoRecoleccionDetail' tipoRecoleccion.id %}">
-                    <p> <strong>Nombre: </strong> {{tipoRecoleccion.nombre}}</p>
-                    <p> <strong>Descripción: </strong> {{tipoRecoleccion.descripcion}}</p>
-                </a>
-                {% endfor %}
-
-            </ul>
-
+            <h1 class="text-center">Listado de tipo de recolección</h1>            
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-3 text-center">
+              <a class="btn btn-success" href="/tipoRecoleccion/crear">Crear</a>
+            </div>
+            <div class="col-sm-6 text-center">
+              <form action="{% url 'buscarTipoRecoleccion' %}" class="mb-3 form-inline">
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">Nombre:</span>
+                  <input type="search" class="form-control" name="buscTipoRecoleccion" placeholder="Buscar tipo de recolección" aria-label="buscar" aria-describedby="basic-addon1">
+                  <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-3 text-center">
+              <!-- Contenido de la tercera columna aquí -->
+            </div>
+          </div>
+
 
     </div>
 </main>
 
-<!-- <body>
-    <div class="container mt-4 table-responsive">
+<body>
 
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-hover mt-4">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Descripción por</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for recoleccion in recoleccions %}
-                        <tr>
-                            <td><a href="{% url 'tipoRecoleccionDetail' tipoRecoleccion.id %}">{{ tipoRecoleccion.tipoRecoleccion_ID }}</a>
-                            </td>
-                            <td>{{ tipoRecoleccion.nombre }}</td>
-                            <td>{{ tipoRecoleccion.descripcion }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tipoRecoleccion in tipoRecoleccions %}
+                    <tr>
+                        <td><a
+                                href="{% url 'tipoRecoleccionDetail' tipoRecoleccion.id %}">{{tipoRecoleccion.nombre}}</a>
+                        </td>
+                        <td>{{tipoRecoleccion.descripcion}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div> -->
-<!-- </body> -->
+    </div>
+
+
+</body>
 
 {% endblock %}

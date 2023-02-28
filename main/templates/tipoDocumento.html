@@ -12,19 +12,34 @@
                 <a class="btn btn-success" href="/tipoDocumento/crear">Crear</a>
             </div>
 
-            <ul class="list-group mt-4">
-                {% for tipoDocumento in tipoDocumentos %}
-                <a class="list-group-item" href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">
-                    <p><strong>Nombre: </strong>{{tipoDocumento.nombre}}</p>
-                </a>
-                {% endfor %}
-
-            </ul>
 
         </div>
 
     </div>
 </main>
+
+<body>
+    <div class="container mt-4 table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipoDocumento in tipoDocumentos %}
+                        <tr>
+                            <td><a href="{% url 'tipoDocumentoDetail' tipoDocumento.id %}">{{tipoDocumento.nombre}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 
 
 {% endblock %}

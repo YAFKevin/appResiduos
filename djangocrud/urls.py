@@ -18,6 +18,7 @@ from django.urls import path
 from main import views 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
@@ -121,7 +122,8 @@ urlpatterns = [
     
     #reportes
     path('maquinariaVigente/', views.maquinariaVigente, name='maquinariaVigente'),
-    # path('maquinariaSegunTipo/', views.maquinariaSegunTipo, name='maquinariaSegunTipo'),
+    # path('tipoMaquinariaSegunTipo/', views.tipoMaquinariaSegunTipo, name='tipoMaquinariaSegunTipo'),
+
 
 
 ]

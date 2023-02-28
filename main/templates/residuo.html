@@ -8,33 +8,53 @@
 
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de residuos</h1> 
-            <div>
-                <a class="btn btn-success" href="/residuo/crear">Crear</a>
-            </div>
 
-            <div class="container d-flex justify-content-between">
-                <form action="{% url 'buscarResiduo' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
-                    <p class="p-2">Nombre del residuo: </p>
-                    <input type="search" class="form-control  mr-sm-2" name="buscResiduo"
-                        placeholder="Buscar residuo" aria-label="buscar">
-                    <br>
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-3 text-center">
+                  <a class="btn btn-success" href="/residuo/crear">Crear</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                  <form action="{% url 'buscarResiduo' %}" class="mb-3 form-inline">
+                    <div class="input-group">
+                      <span class="input-group-text" id="basic-addon1">Nombre del residuo:</span>
+                      <input type="search" class="form-control" name="buscResiduo" placeholder="Buscar residuo" aria-label="buscar" aria-describedby="basic-addon1">
+                      <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-sm-3 text-center">
+                </div>
+              </div>
+              
 
-            <ul class="list-group mt-4">
-                {% for residuo in residuos %}
-
-                <a class="list-group-item" href="{% url 'residuoDetail' residuo.id %}">
-                    <p><strong>Nombre: </strong>{{residuo.nombre}}</p>
-                    <p><strong>Descripción: </strong>{{residuo.descripcion}}</p>
-                    <p><strong>Estado: </strong> {{residuo.estado}}</p>
-                </a>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 </main>
 
+<body>
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for residuo in residuos %}
+                    <tr>
+                        <td><a href="{% url 'residuoDetail' residuo.id %}">{{residuo.nombre}}</a></td>
+                        <td>{{residuo.descripcion}}</td>
+                        <td>{{residuo.estado}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
 
 {% endblock %}

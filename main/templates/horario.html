@@ -9,40 +9,55 @@
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">Listado de horarios</h1>
 
-            <div>
-                <a class="btn btn-success" href="/horario/crear">Crear</a>
-            </div> 
-
-            <div class="container d-flex justify-content-between">
-                <form action="{% url 'buscarHorario' %}" class=" d-flex flex-row mb-3 form-inline my-2 my-lg-0 mr-4">
-                    <p class="p-2">Hora *formato 24 horas: </p>
-                    <input type="search" class="form-control  mr-sm-2" name="buscHorario"
-                        placeholder="Buscar horario" aria-label="buscar">
-                    <br>
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </div>
-
-            <ul class="list-group mt-4">
-
-                {% for horario in horarios %}
-
-                <a class="list-group-item" href="{% url 'horarioDetail' horario.id %}">
-                    <p><strong>Fecha:</strong> {{horario.fecha}}</p>
-                    <p><strong>Hora:  </strong>{{horario.hora}}</p>
-                    <p><strong>Estado: </strong>{{horario.estado}}</p>
-                    <p><strong>Ruta: </strong>{{horario.idRuta}}</p>
-                </a>
-                {% endfor %}
-
-            </ul>
-
+            
+            <div class="row justify-content-center">
+                <div class="col-sm-3 text-center">
+                  <a class="btn btn-success" href="/horario/crear">Crear</a>
+                </div>
+  
+                <div class="col-sm-6 text-center">
+                  <form action="{% url 'buscarHorario' %}" class="mb-3 form-inline">
+                    <div class="input-group">
+                      <span class="input-group-text" id="basic-addon1">Hora: (Formato 24 horas) </span>
+                      <input type="search" class="form-control" name="buscHorario" placeholder="Buscar horario" aria-label="buscar" aria-describedby="basic-addon1">
+                      <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-sm-3 text-center">
+                </div>
+              </div>
         </div>
-
     </div>
 </main>
 
-
-
+<body>
+    <div class="container mt-4 table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                            <th>Ruta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for horario in horarios %}
+                        <tr>
+                            <td><a href="{% url 'horarioDetail' horario.id %}">{{ horario.fecha }}</a></td>
+                            <td>{{ horario.hora }}</td>
+                            <td>{{ horario.estado }}</td>
+                            <td>{{ horario.idRuta }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 
 {% endblock %}

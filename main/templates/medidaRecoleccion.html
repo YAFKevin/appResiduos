@@ -12,16 +12,40 @@
                 <a class="btn btn-success" href="/medidaRecoleccion/crear">Crear</a>
             </div>
 
-            <ul class="list-group mt-4">
+            <!-- <ul class="list-group mt-4">
                 {% for medidaRecoleccion in medidaRecoleccions %}
 
                 <a class="list-group-item" href="{% url 'medidaRecoleccionDetail' medidaRecoleccion.id %}">
                     <p> <strong>Nombre:</strong> {{ medidaRecoleccion.nombre }}</p>
                 </a>
                 {% endfor %}
-            </ul>
+            </ul> -->
         </div>
     </div>
 </main>
+
+<body>
+    
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medidaRecoleccion in medidaRecoleccions %}
+                    <tr>
+                        <td><a href="{% url 'medidaRecoleccionDetail' medidaRecoleccion.id %}">{{medidaRecoleccion.nombre}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</body>
 
 {% endblock %}

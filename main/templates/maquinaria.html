@@ -23,21 +23,41 @@
             </div>
  
 
-            <ul class="list-group mt-4">
-                {% for maquinaria in maquinarias %}
-
-                <a class="list-group-item" href="{% url 'maquinariaDetail' maquinaria.id %}">
-                    <p><strong>Nombre: </strong>{{maquinaria.nombre}}</p>
-                    <p><strong>Tipo de maquinaria: </strong>{{maquinaria.idTipoMaqui}}</p>
-                    <p><strong>Placa: </strong>{{maquinaria.placa}}</p>
-                    <p><strong>Carga neta: </strong>{{maquinaria.cargaNeta}}</p>
-                    <p><strong>Carga útil: </strong>{{maquinaria.cargaUtil}}</p>
-                    <p><strong>Estado: </strong>{{maquinaria.estado}}</p>
-                </a>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 </main>
+
+<body>
+    <div class="container mt-4 table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de maquinaria</th>
+                            <th>Placa</th>
+                            <th>Carga neta</th>
+                            <th>Carga útil</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for maquinaria in maquinarias %}
+                        <tr>
+                            <td><a href="{% url 'maquinariaDetail' maquinaria.id %}">{{maquinaria.nombre}}</a></td>
+                            <td>{{maquinaria.idTipoMaqui}}</td>
+                            <td>{{maquinaria.placa}}</td>
+                            <td>{{maquinaria.cargaNeta}}</td>
+                            <td>{{maquinaria.cargaUtil}}</td>
+                            <td>{{maquinaria.estado}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 
 {% endblock %}

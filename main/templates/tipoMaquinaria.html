@@ -24,20 +24,35 @@
                 </form>
             </div>
 
-            <ul class="list-group mt-4">
-                {% for tipoMaquinaria in tipoMaquinarias %}
-
-                <a class="list-group-item" href="{% url 'tipoMaquinariaDetail' tipoMaquinaria.id %}">
-                    <p> <strong>Nombre: </strong>{{tipoMaquinaria.nombre}}</p>
-                </a>
-                {% endfor %}
-
-            </ul>
-
         </div>
 
     </div>
 </main>
+
+
+<body>
+    <div class="container mt-4 table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipoMaquinaria in tipoMaquinarias %}
+                        <tr>
+                            <td><a href="{% url 'tipoMaquinariaDetail' tipoMaquinaria.id %}">{{tipoMaquinaria.nombre}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
 
 
 

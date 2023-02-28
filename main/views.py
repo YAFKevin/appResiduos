@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from .forms import tipoDocumentoForm, tipoCiudadanoForm, tipoMaquinariaForm, residuoForm, tipoIncentivoForm, tipoPersonalForm, zonaForm, personalForm, ciudadanoForm, maquinariaForm, rutaForm, horarioForm, tipoRecoleccionForm, recoleccionForm, detalleIncentivoForm, medidaRecoleccionForm
 from .models import tipoDocumento, tipoMaquinaria, residuo, tipoIncentivo, tipoPersonal, zona, personal, tipoCiudadano, ciudadano, maquinaria, ruta, horario, tipoRecoleccion, recoleccion, detalleIncentivo, medidaRecoleccion, auditoria
 from django.contrib.auth.decorators import login_required
-#imoprtar datetime
+from django.views.generic import ListView
 import datetime as dt
 
 
@@ -1339,3 +1339,17 @@ def maquinariaVigente(request):
     context = {'maquinarias': maquinarias}
     print(request)
     return render(request, template_name, context)
+
+
+
+
+# @login_required
+# #Crear una funcion que reciba como parametro el id del tipo de maquinaria
+# def tipoMaquinariaSegunTipo(request):
+#     #Obtener el idTipoMaqui que se envia por el POST
+#     idTipoMaqui = request.POST['idTipoMaqui']
+#     #Obtener las maquinarias que tengan el idTipoMaqui
+#     maquinarias = maquinaria.objects.filter(idTipoMaquinaria=idTipoMaqui)
+
+#     return render(request, 'tipoMaquinariaSegunTipo.html', {'maquinarias': maquinarias})
+    
